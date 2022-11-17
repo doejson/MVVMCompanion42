@@ -7,7 +7,7 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+class InformationViewController: UIViewController {
 	
 	
 
@@ -16,6 +16,10 @@ class ViewController: UIViewController {
         // Do any additional setup after loading the view.
         view.backgroundColor = .orange
     }
+	
+	func callToViewModelForUpdate() {
+		
+	}
 
 
 }
