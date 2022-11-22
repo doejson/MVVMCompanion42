@@ -12,19 +12,45 @@ enum NetworkError: Error {
 	case invalidURL, noData, noToken, decodingError
 }
 
+struct Token: Codable {
+	let token: String?
+}
+
 class NetworkService {
 	
 	static let shared = NetworkService()
 	private init() {}
 	
-	private let UID = K.uid
-	private let SECRET = K.secret
+	let api = K.api
+	let scheme = K.scheme
+	let path = K.path
+	let uid = K.uid
+	let secret = K.secret
+	lazy var url = URL(string: scheme + api + path + uid + secret)
 	
-	private let scheme = "https"
-	private let host = "api.intra.42.fr"
-	private let path = "/oauth/token"
 	
-	private let url = "https://api.intra.42.fr/v2/me"
+	func createURL() {
+		var urlComponents = URLComponents()
+		urlComponents.scheme = K.scheme
+		urlComponents.host = K.api
+		urlComponents.path = K.path
+		urlComponents.queryItems = [
+			URLQueryItem(name: "UID", value: K.uid),
+			URLQueryItem(name: "SECRET", value: K.secret)
+		]
+		print(urlComponents.url?.absoluteString)
+	}
+	
+	
+	
+	
+	private static func getToken() {
+		
+		
+		
+		
+	}
+	
 	
 	
    func loadJson(completion: @escaping (Result<ModelData, Error>) -> Void) {
