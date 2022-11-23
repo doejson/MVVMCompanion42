@@ -52,6 +52,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         // to restore the scene back to its current state.
     }
 	
+	//TODO: Create method to autorize user by nikname and password and launch it here
+	
 //	func scene(_ scene: UIScene, openURLContexts URLContexts: Set<UIOpenURLContext>) {
 //		<#code#>
 //	}
