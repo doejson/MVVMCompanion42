@@ -18,7 +18,17 @@ struct Token: Codable {
 }
 
 struct CheckToken: Codable {
-	let expires_in_seconds: Int
+	
+	var expires_in_seconds: Int
+	
+	var expires_type: String {
+		switch expires_in_seconds {
+		case 3000...7200: return "okay"
+		case 1000...3000: return "medium"
+		case 50...1000: return "weak"
+		default: return "expired"
+		}
+	}
 }
 
 class NetworkService {
