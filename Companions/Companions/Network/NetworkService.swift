@@ -35,6 +35,8 @@ class NetworkService {
 	
 	static let shared = NetworkService()
 	private init() {}
+	var token: String?
+	var tokenType: String?
 	
 	let api = Web.api
 	let scheme = Web.scheme
@@ -48,27 +50,29 @@ class NetworkService {
 		urlComponents.scheme = Web.scheme
 		urlComponents.host = Web.api
 		urlComponents.path = Web.path
-		//TODO: DI?!
 		urlComponents.queryItems = [
 			URLQueryItem(name: "grant_type", value: "client_credentials"),
 			URLQueryItem(name: "client_id", value: Web.uid),
-			URLQueryItem(name: "client_secret", value: Web.secret)
+			URLQueryItem(name: "client_secret", value: Web.secret),
 		]
-		//TODO: Cringe
 		guard let finalURl = urlComponents.url else { return URL(fileURLWithPath:Web.api) }
-		print(finalURl)
 		return finalURl
 	}()
 	
-	var checkToken: URL? = {
+	var checkToken: URL = {
 		var url = URLComponents()
 		url.scheme = Web.scheme
 		url.host = Web.api
-		url.path = Web.path + "/info"
-		url.queryItems = [
-			URLQueryItem(name: "Authorization", value: "Token")
-		]
-		return url.url
+		url.path = Web.path + "info"
+		return url.url ?? URL(string: "")!
+	}()
+	
+	var urlUser: URL = {
+		var url = URLComponents()
+		url.scheme = Web.scheme
+		url.host = Web.api
+		url.path = Web.userPath + "tpatti"
+		return url.url ?? URL(string: "")!
 	}()
 	
 	//TODO: Create User Defaults
@@ -77,9 +81,10 @@ class NetworkService {
 	
 	
 	func getToken(completion: @escaping (Result<Token, Error>) -> Void) {
-		
-		let urlSession = URLSession(configuration: .default).dataTask(with: urlToken) { (data,response,error) in
-
+		let urlSession = URLSession(configuration: .default)
+		var req = URLRequest(url: urlToken)
+		req.httpMethod = "POST"
+		let task = urlSession.dataTask(with: req) { (data,response,error) in
 			if let error = error {
 				completion(.failure(error))
 			}
@@ -88,28 +93,48 @@ class NetworkService {
 				do {
 					let decodedData = try JSONDecoder().decode(Token.self, from: data)
 					completion(.success(decodedData))
+					self.token = decodedData.access_token
+					self.tokenType = decodedData.token_type
 				} catch {
 					completion(.failure(error))
 				}
 			}
 		}
-		urlSession.resume()
+		task.resume()
 	}
-
-	func checkToken(completion: @escaping () -> Void) {
-		
-		let urlSession = URLSession(configuration: .default).dataTask(with: checkToken) { <#Data?#>, <#URLResponse?#>, <#Error?#> in
-			<#code#>
-		}
-		
 	
+	func checkToken(completion: @escaping (Result<CheckToken, Error>) -> Void) {
+		let urlSession = URLSession(configuration: .default)
+		var req = URLRequest(url: checkToken)
+		req.httpMethod = "GET"
+		req.addValue(tokenType! + " " + token!, forHTTPHeaderField: "Authorization")
+		print("__________debug lvl GOD___________")
+		print(req)
+		let task = urlSession.dataTask(with: req) { (data,response,error) in
+			if let error = error {
+				completion(.failure(error))
+			}
+			if let data = data {
+				do {
+					let decodedData = try JSONDecoder().decode(CheckToken.self, from: data)
+					completion(.success(decodedData))
+				} catch {
+					completion(.failure(error))
+				}
+			}
+		}
+		task.resume()
 	}
-
-
-
-func loadUserJson(completion: @escaping (Result<ModelData, Error>) -> Void) {
-	if let url = URL(string: path) {
-		let urlSession = URLSession(configuration: .default).dataTask(with: url) { (data, response, error) in
+	
+	func loadUser(completion: @escaping (Result<ModelData, Error>) -> Void) {
+		let urlSession = URLSession(configuration: .default)
+		var req = URLRequest(url: urlUser)
+		req.httpMethod = "GET"
+		req.addValue(tokenType! + " " + token!, forHTTPHeaderField: "Authorization")
+		print("__________debug lvl GOD___________")
+		print(req)
+		
+		let task = urlSession.dataTask(with: req) { (data,response,error) in
 			if let error = error {
 				completion(.failure(error))
 			}
@@ -122,10 +147,7 @@ func loadUserJson(completion: @escaping (Result<ModelData, Error>) -> Void) {
 				}
 			}
 		}
-		urlSession.resume()
+		task.resume()
 	}
-}
-
-
 }
 

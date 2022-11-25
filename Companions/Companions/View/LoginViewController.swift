@@ -9,6 +9,9 @@ import UIKit
 
 class LoginViewController: UIViewController {
 	
+	var token: String?
+	var tokenType: String?
+	
 	let loginTextField: UITextField = {
 		let textField = UITextField()
 		textField.backgroundColor = .systemMint
@@ -46,7 +49,7 @@ class LoginViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupView()
-		NetworkService.shared.createURL()
+		fetch()
     }
 	func setupView() {
 		view.backgroundColor = .orange
@@ -77,10 +80,25 @@ class LoginViewController: UIViewController {
 			])
 	}
 	
+	func fetch() {
+		NetworkService.shared.getToken { result in
+			switch result {
+			case .success(let data):
+				self.token = data.access_token
+				self.tokenType = data.token_type
+			case .failure(let error):
+				print(error)
+		}
+	}
+}
+	
 	@objc func loginButtonPressed() {
 		let searchViewController = SearchViewController()
 		self.navigationController?.pushViewController(searchViewController, animated: true)
 		print("Login Success")
+		print(token)
+		print(tokenType)
+		
 	}
 	
 	func callToViewModelForUpdate() {

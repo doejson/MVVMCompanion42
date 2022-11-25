@@ -21,6 +21,8 @@ class SearchViewController: UIViewController {
 		let button = UIButton()
 		button.backgroundColor = .systemOrange
 		button.layer.cornerRadius = 12.4
+		button.setTitle("Press me 🟢", for: .normal)
+		button.addTarget(self, action: #selector(searchButtonPressed), for: .touchUpInside)
 		button.translatesAutoresizingMaskIntoConstraints = false
 		return button
 	}()
@@ -35,6 +37,12 @@ class SearchViewController: UIViewController {
 		view.addSubview(searchTextField)
 		view.addSubview(searchButton)
 		setupConstraints()
+	}
+	
+	@objc func searchButtonPressed() {
+		let profileViewController = ProfileViewController()
+		self.navigationController?.pushViewController(profileViewController, animated: true)
+		print("Search Success")
 	}
 	
 	private func setupConstraints() {
