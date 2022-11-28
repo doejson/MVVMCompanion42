@@ -7,11 +7,3 @@
 
 import Foundation
 
-//MARK: - Users
-
-struct ModelData: Decodable {
-	let id: String?
-	let email: String?
-	let login: String?
-
-}

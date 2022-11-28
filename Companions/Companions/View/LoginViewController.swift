@@ -43,9 +43,7 @@ class LoginViewController: UIViewController {
 		button.translatesAutoresizingMaskIntoConstraints = false
 		return button
 	}()
-	
-	
-
+	//MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
         setupView()
@@ -84,8 +82,9 @@ class LoginViewController: UIViewController {
 		NetworkService.shared.getToken { result in
 			switch result {
 			case .success(let data):
-				self.token = data.access_token
-				self.tokenType = data.token_type
+				UserDefaults.standard.setValue(data.access_token, forKey: "token")
+				UserDefaults.standard.setValue(data.token_type, forKey: "tokenType")
+				UserDefaults.standard.synchronize()
 			case .failure(let error):
 				print(error)
 		}
@@ -96,9 +95,9 @@ class LoginViewController: UIViewController {
 		let searchViewController = SearchViewController()
 		self.navigationController?.pushViewController(searchViewController, animated: true)
 		print("Login Success")
-		print(token)
-		print(tokenType)
 		
+		print(UserDefaults.standard.value(forKey: "token"))
+		print(UserDefaults.standard.value(forKey: "tokenType"))
 	}
 	
 	func callToViewModelForUpdate() {

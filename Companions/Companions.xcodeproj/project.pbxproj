@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		325C24F829343EF9006F1EFD /* NetworkServiceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 325C24F729343EF9006F1EFD /* NetworkServiceProtocol.swift */; };
+		325C24FA29343F06006F1EFD /* NetworkModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 325C24F929343F06006F1EFD /* NetworkModel.swift */; };
 		32A8721F292A837F00549ED8 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32A8721E292A837F00549ED8 /* SearchViewController.swift */; };
 		32A87221292A8A5100549ED8 /* Cell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32A87220292A8A5100549ED8 /* Cell.swift */; };
 		32A87223292A8A8100549ED8 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32A87222292A8A8100549ED8 /* Extensions.swift */; };
@@ -23,6 +25,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		325C24F729343EF9006F1EFD /* NetworkServiceProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkServiceProtocol.swift; sourceTree = "<group>"; };
+		325C24F929343F06006F1EFD /* NetworkModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkModel.swift; sourceTree = "<group>"; };
 		32A8721E292A837F00549ED8 /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
 		32A87220292A8A5100549ED8 /* Cell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Cell.swift; sourceTree = "<group>"; };
 		32A87222292A8A8100549ED8 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
@@ -124,7 +128,9 @@
 		5A8C0BF8292564A700EDF33B /* Network */ = {
 			isa = PBXGroup;
 			children = (
+				325C24F729343EF9006F1EFD /* NetworkServiceProtocol.swift */,
 				5A8C0BF9292564BD00EDF33B /* NetworkService.swift */,
+				325C24F929343F06006F1EFD /* NetworkModel.swift */,
 			);
 			path = Network;
 			sourceTree = "<group>";
@@ -209,6 +215,8 @@
 				5A8DACC4292693BD00D56178 /* ProfileViewModel.swift in Sources */,
 				32A87223292A8A8100549ED8 /* Extensions.swift in Sources */,
 				5A8C0BF7292563A800EDF33B /* ProfileViewController.swift in Sources */,
+				325C24F829343EF9006F1EFD /* NetworkServiceProtocol.swift in Sources */,
+				325C24FA29343F06006F1EFD /* NetworkModel.swift in Sources */,
 				5AA6D8FD292D44B100ABC850 /* Constants.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

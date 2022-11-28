@@ -11,8 +11,18 @@ class SearchViewController: UIViewController {
 	
 	let searchTextField: UITextField = {
 		let search = UITextField()
-		search.backgroundColor = .systemOrange
-		search.layer.cornerRadius = 12.4
+		search.placeholder = "Search ..."
+		search.backgroundColor = .lightGray
+		search.alpha = 0.85
+		search.keyboardType = UIKeyboardType.default
+		search.returnKeyType = UIReturnKeyType.done
+		search.autocorrectionType = UITextAutocorrectionType.no
+		search.font = UIFont.systemFont(ofSize: 15)
+		search.borderStyle = UITextField.BorderStyle.roundedRect
+		search.clearButtonMode = UITextField.ViewMode.whileEditing;
+		search.contentVerticalAlignment = UIControl.ContentVerticalAlignment.center
+		search.autocapitalizationType = .words
+		search.returnKeyType = .go
 		search.translatesAutoresizingMaskIntoConstraints = false
 		return search
 	}()
@@ -26,11 +36,12 @@ class SearchViewController: UIViewController {
 		button.translatesAutoresizingMaskIntoConstraints = false
 		return button
 	}()
-
-    override func viewDidLoad() {
-        super.viewDidLoad()
+	
+	override func viewDidLoad() {
+		super.viewDidLoad()
+		searchTextField.delegate = self
 		setupView()
-    }
+	}
 	
 	private func setupView() {
 		view.backgroundColor = .systemBlue
@@ -57,11 +68,38 @@ class SearchViewController: UIViewController {
 			searchButton.leftAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leftAnchor, constant: 50),
 			searchButton.rightAnchor.constraint(equalTo: view.safeAreaLayoutGuide.rightAnchor, constant: -50),
 			searchButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -200)
-		
+			
 		])
 	}
 	
+}
+
+extension SearchViewController: UITextFieldDelegate {
 	
-
-
+	func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+		searchTextField.endEditing(true)
+		guard let text = searchTextField.text else {
+			return false
+		}
+		print (text)
+		return true
+	}
+	
+	func textFieldShouldEndEditing(_ textField: UITextField) -> Bool {
+		//TODO: Use Guard 😎
+		if textField.text != "" {
+			return true
+		} else {
+			textField.placeholder = "Type something"
+			return false
+		}
+	}
+	
+	func textFieldDidEndEditing(_ textField: UITextField) {
+		
+		if let user = searchTextField.text?.lowercased() {
+			UserDefaults.standard.setValue(user, forKey: "user")
+		}
+		searchTextField.text = ""
+	}
 }

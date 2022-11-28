@@ -136,9 +136,9 @@ class ProfileViewController: UIViewController {
 		NetworkService.shared.loadUser { result in
 			switch result {
 			case .success(let data):
-				self.emailLabel.text = data.email
-				self.nickLabel.text = data.login
 				DispatchQueue.main.async {
+					self.emailLabel.text = data.email
+					self.nickLabel.text = data.login
 					self.reloadInputViews()
 				}
 			case .failure(let error):

@@ -12,31 +12,10 @@ enum NetworkError: Error {
 	case invalidURL, noData, noToken, decodingError
 }
 
-struct Token: Codable {
-	let access_token: String?
-	let token_type: String?
-}
+class NetworkService: APIService {
 
-struct CheckToken: Codable {
-	
-	var expires_in_seconds: Int
-	
-	var expires_type: String {
-		switch expires_in_seconds {
-		case 3000...7200: return "okay"
-		case 1000...3000: return "medium"
-		case 50...1000: return "weak"
-		default: return "expired"
-		}
-	}
-}
-
-class NetworkService {
-	
-	static let shared = NetworkService()
+	static let shared: APIService = NetworkService()
 	private init() {}
-	var token: String?
-	var tokenType: String?
 	
 	let api = Web.api
 	let scheme = Web.scheme
@@ -71,7 +50,7 @@ class NetworkService {
 		var url = URLComponents()
 		url.scheme = Web.scheme
 		url.host = Web.api
-		url.path = Web.userPath + "tpatti"
+		url.path = Web.userPath
 		return url.url ?? URL(string: "")!
 	}()
 	
@@ -81,9 +60,11 @@ class NetworkService {
 	
 	
 	func getToken(completion: @escaping (Result<Token, Error>) -> Void) {
+		
 		let urlSession = URLSession(configuration: .default)
 		var req = URLRequest(url: urlToken)
 		req.httpMethod = "POST"
+		print(req)
 		let task = urlSession.dataTask(with: req) { (data,response,error) in
 			if let error = error {
 				completion(.failure(error))
@@ -93,8 +74,6 @@ class NetworkService {
 				do {
 					let decodedData = try JSONDecoder().decode(Token.self, from: data)
 					completion(.success(decodedData))
-					self.token = decodedData.access_token
-					self.tokenType = decodedData.token_type
 				} catch {
 					completion(.failure(error))
 				}
@@ -104,12 +83,18 @@ class NetworkService {
 	}
 	
 	func checkToken(completion: @escaping (Result<CheckToken, Error>) -> Void) {
+		
+		guard let token = UserDefaults.standard.string(forKey: "token") else { return }
+		guard let tokenType = UserDefaults.standard.string(forKey: "tokenType") else { return }
+		
 		let urlSession = URLSession(configuration: .default)
 		var req = URLRequest(url: checkToken)
 		req.httpMethod = "GET"
-		req.addValue(tokenType! + " " + token!, forHTTPHeaderField: "Authorization")
+		
+		req.addValue(tokenType + " " + token, forHTTPHeaderField: "Authorization")
 		print("__________debug lvl GOD___________")
 		print(req)
+		
 		let task = urlSession.dataTask(with: req) { (data,response,error) in
 			if let error = error {
 				completion(.failure(error))
@@ -127,11 +112,16 @@ class NetworkService {
 	}
 	
 	func loadUser(completion: @escaping (Result<ModelData, Error>) -> Void) {
+		
+		guard let token = UserDefaults.standard.string(forKey: "token") else { return }
+		guard let tokenType = UserDefaults.standard.string(forKey: "tokenType") else { return }
+		
 		let urlSession = URLSession(configuration: .default)
 		var req = URLRequest(url: urlUser)
 		req.httpMethod = "GET"
-		req.addValue(tokenType! + " " + token!, forHTTPHeaderField: "Authorization")
-		print("__________debug lvl GOD___________")
+		req.addValue(tokenType + " " + token, forHTTPHeaderField: "Authorization")
+		print("__________debug lvl GOD2___________")
+		
 		print(req)
 		
 		let task = urlSession.dataTask(with: req) { (data,response,error) in
