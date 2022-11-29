@@ -18,6 +18,6 @@ protocol APIService {
 	func checkToken(completion: @escaping (Result<CheckToken, Error>) -> Void)
 	
 	//MARK: - get user data
-	func loadUser(completion: @escaping (Result<ModelData, Error>) -> Void)
+	func loadUser(userName: String?, completion: @escaping (Result<ModelData, Error>) -> Void)
 	
 }

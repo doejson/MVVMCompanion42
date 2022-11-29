@@ -28,11 +28,12 @@ class LoginViewController: UIViewController {
 		return textField
 	}()
 	
-//	let view: UIView = {
-//		let view = UIView()
-//		view.backgroundColor = .systemMint
-//		return view
-//	}()
+	let labelView: UIImageView = {
+		let view = UIImageView()
+		view.image = UIImage(named: "logo.png")
+		view.translatesAutoresizingMaskIntoConstraints = false
+		return view
+	}()
 	
 	let loginButton: UIButton = {
 		let button = UIButton()
@@ -50,9 +51,10 @@ class LoginViewController: UIViewController {
 		fetch()
     }
 	func setupView() {
-		view.backgroundColor = .orange
-		view.addSubview(loginTextField)
-		view.addSubview(passwordTextField)
+		view.backgroundColor = UIColor(patternImage: UIImage(named: "background.png")!)
+		view.addSubview(labelView)
+//		view.addSubview(loginTextField)
+//		view.addSubview(passwordTextField)
 		view.addSubview(loginButton)
 		setupConstraints()
 	}
@@ -60,15 +62,20 @@ class LoginViewController: UIViewController {
 	func setupConstraints() {
 		NSLayoutConstraint.activate([
 			
-			loginTextField.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 50),
-			loginTextField.leftAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leftAnchor, constant: 50),
-			loginTextField.rightAnchor.constraint(equalTo: view.safeAreaLayoutGuide.rightAnchor, constant: -50),
-			loginTextField.heightAnchor.constraint(equalToConstant: 75),
+			labelView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+			labelView.centerXAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerXAnchor),
+			labelView.heightAnchor.constraint(equalToConstant: 60),
+			labelView.widthAnchor.constraint(equalToConstant: 80),
 			
-			passwordTextField.topAnchor.constraint(equalTo: loginTextField.bottomAnchor, constant: 50),
-			passwordTextField.leftAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leftAnchor, constant: 50),
-			passwordTextField.rightAnchor.constraint(equalTo: view.safeAreaLayoutGuide.rightAnchor, constant: -50),
-			passwordTextField.heightAnchor.constraint(equalToConstant: 75),
+			//			loginTextField.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 50),
+//			loginTextField.leftAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leftAnchor, constant: 50),
+//			loginTextField.rightAnchor.constraint(equalTo: view.safeAreaLayoutGuide.rightAnchor, constant: -50),
+//			loginTextField.heightAnchor.constraint(equalToConstant: 75),
+//
+//			passwordTextField.topAnchor.constraint(equalTo: loginTextField.bottomAnchor, constant: 50),
+//			passwordTextField.leftAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leftAnchor, constant: 50),
+//			passwordTextField.rightAnchor.constraint(equalTo: view.safeAreaLayoutGuide.rightAnchor, constant: -50),
+//			passwordTextField.heightAnchor.constraint(equalToConstant: 75),
 			
 			loginButton.heightAnchor.constraint(equalToConstant: 75),
 			loginButton.leftAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leftAnchor, constant: 50),

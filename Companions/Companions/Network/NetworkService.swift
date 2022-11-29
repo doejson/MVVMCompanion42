@@ -111,12 +111,12 @@ class NetworkService: APIService {
 		task.resume()
 	}
 	
-	func loadUser(completion: @escaping (Result<ModelData, Error>) -> Void) {
+	func loadUser(userName: String?, completion: @escaping (Result<ModelData, Error>) -> Void) {
 		
 		guard let token = UserDefaults.standard.string(forKey: "token") else { return }
 		guard let tokenType = UserDefaults.standard.string(forKey: "tokenType") else { return }
-		
 		let urlSession = URLSession(configuration: .default)
+		let urlUser = urlUser.appendingPathComponent(userName ?? "")
 		var req = URLRequest(url: urlUser)
 		req.httpMethod = "GET"
 		req.addValue(tokenType + " " + token, forHTTPHeaderField: "Authorization")

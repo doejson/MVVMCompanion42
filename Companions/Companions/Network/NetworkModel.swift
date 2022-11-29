@@ -15,7 +15,7 @@ struct Web {
 	static let scheme = "https"
 	static let api = "api.intra.42.fr"
 	static let path = "/oauth/token/"
-	static let userPath = "/v2/users/" + userName!
+	static let userPath = "/v2/users/"
 	static let secret = ProcessInfo.processInfo.environment["secret"]
 	static let uid = ProcessInfo.processInfo.environment["uid"]
 	

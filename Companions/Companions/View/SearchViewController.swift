@@ -7,7 +7,9 @@
 
 import UIKit
 
-class SearchViewController: UIViewController {
+class SearchViewController: UIViewController, ProfileViewControllerProtocol {
+	
+	var userName: String?
 	
 	let searchTextField: UITextField = {
 		let search = UITextField()
@@ -44,7 +46,7 @@ class SearchViewController: UIViewController {
 	}
 	
 	private func setupView() {
-		view.backgroundColor = .systemBlue
+		view.backgroundColor = UIColor(patternImage: UIImage(named: "background.png")!)
 		view.addSubview(searchTextField)
 		view.addSubview(searchButton)
 		setupConstraints()
@@ -52,17 +54,19 @@ class SearchViewController: UIViewController {
 	
 	@objc func searchButtonPressed() {
 		let profileViewController = ProfileViewController()
+		profileViewController.delegate = self
 		self.navigationController?.pushViewController(profileViewController, animated: true)
 		print("Search Success")
+		userName = searchTextField.text?.lowercased()
 	}
 	
 	private func setupConstraints() {
 		NSLayoutConstraint.activate([
 			
 			searchTextField.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 100),
-			searchTextField.leftAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leftAnchor, constant: 50),
-			searchTextField.rightAnchor.constraint(equalTo: view.safeAreaLayoutGuide.rightAnchor, constant: -50),
-			searchTextField.heightAnchor.constraint(equalToConstant: 75),
+			searchTextField.leftAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leftAnchor, constant: 40),
+			searchTextField.rightAnchor.constraint(equalTo: view.safeAreaLayoutGuide.rightAnchor, constant: -40),
+			searchTextField.heightAnchor.constraint(equalToConstant: 50),
 			
 			searchButton.heightAnchor.constraint(equalToConstant: 50),
 			searchButton.leftAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leftAnchor, constant: 50),
