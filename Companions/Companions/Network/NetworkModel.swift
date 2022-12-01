@@ -50,4 +50,42 @@ struct ModelData: Codable {
 	let pool_year: String?
 	let location: String?
 	let active: Bool?
+	let projects_users: [ProjectsUsersModel]?
+}
+
+struct ProjectsUsersModel: Codable {
+	let id, occurrence: Int?
+	let finalMark: Int?
+	let status: String?
+	let validated: Bool?
+	let currentTeamID: Int?
+	let project: ProjectInfoModel?
+	let cursusIDS: [Int]?
+	let markedAt: String?
+
+	enum CodingKeys: String, CodingKey {
+		case id, occurrence
+		case finalMark = "final_mark"
+		case status
+		case validated = "validated?"
+		case currentTeamID = "current_team_id"
+		case project
+		case cursusIDS = "cursus_ids"
+		case markedAt = "marked_at"
+
+	}
+}
+
+struct ProjectInfoModel: Codable {
+	let id: Int?
+	let name: String?
+	let slug: String?
+	let parentID: Int?
+	
+	enum CodingKeys: String, CodingKey {
+		case id
+		case name
+		case slug
+		case parentID = "parent_id"
+	}
 }

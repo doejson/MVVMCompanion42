@@ -43,7 +43,8 @@ class NetworkService: APIService {
 		url.scheme = Web.scheme
 		url.host = Web.api
 		url.path = Web.path + "info"
-		return url.url ?? URL(string: "")!
+		guard let finalURl = url.url else { return URL(fileURLWithPath:Web.api) }
+		return finalURl
 	}()
 	
 	var urlUser: URL = {
@@ -51,20 +52,17 @@ class NetworkService: APIService {
 		url.scheme = Web.scheme
 		url.host = Web.api
 		url.path = Web.userPath
-		return url.url ?? URL(string: "")!
+		guard let finalURl = url.url else { return URL(fileURLWithPath:Web.api) }
+		return finalURl
 	}()
 	
 	//TODO: Create User Defaults
-	
-	
-	
 	
 	func getToken(completion: @escaping (Result<Token, Error>) -> Void) {
 		
 		let urlSession = URLSession(configuration: .default)
 		var req = URLRequest(url: urlToken)
 		req.httpMethod = "POST"
-		print(req)
 		let task = urlSession.dataTask(with: req) { (data,response,error) in
 			if let error = error {
 				completion(.failure(error))
@@ -90,10 +88,7 @@ class NetworkService: APIService {
 		let urlSession = URLSession(configuration: .default)
 		var req = URLRequest(url: checkToken)
 		req.httpMethod = "GET"
-		
 		req.addValue(tokenType + " " + token, forHTTPHeaderField: "Authorization")
-		print("__________debug lvl GOD___________")
-		print(req)
 		
 		let task = urlSession.dataTask(with: req) { (data,response,error) in
 			if let error = error {
@@ -120,10 +115,7 @@ class NetworkService: APIService {
 		var req = URLRequest(url: urlUser)
 		req.httpMethod = "GET"
 		req.addValue(tokenType + " " + token, forHTTPHeaderField: "Authorization")
-		print("__________debug lvl GOD2___________")
-		
-		print(req)
-		
+
 		let task = urlSession.dataTask(with: req) { (data,response,error) in
 			if let error = error {
 				completion(.failure(error))
@@ -140,4 +132,3 @@ class NetworkService: APIService {
 		task.resume()
 	}
 }
-
