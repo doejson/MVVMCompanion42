@@ -1,17 +1,17 @@
 {
   "images" : [
     {
-      "filename" : "Untitled design-3.png",
+      "filename" : "logo_png.png",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
-      "filename" : "Untitled design-3 1.png",
+      "filename" : "logo_png 1.png",
       "idiom" : "universal",
       "scale" : "2x"
     },
     {
-      "filename" : "Untitled design-3 2.png",
+      "filename" : "logo_png 2.png",
       "idiom" : "universal",
       "scale" : "3x"
     }
@@ -19,5 +19,8 @@
   "info" : {
     "author" : "xcode",
     "version" : 1
+  },
+  "properties" : {
+    "preserves-vector-representation" : true
   }
 }

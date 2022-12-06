@@ -11,6 +11,7 @@ class LoginViewController: UIViewController {
 	
 	var token: String?
 	var tokenType: String?
+	var tokenStatus: String?
 	
 	let loginTextField: UITextField = {
 		let textField = UITextField()
@@ -37,10 +38,9 @@ class LoginViewController: UIViewController {
 	
 	let loginButton: UIButton = {
 		let button = UIButton()
-		button.backgroundColor = .blue
+		button.backgroundColor = .purple
 		button.setTitle(K.loginButtonTitle, for: .normal)
 		button.addTarget(self, action: #selector(loginButtonPressed), for: .touchUpInside)
-		button.layer.cornerRadius = 12.4
 		button.translatesAutoresizingMaskIntoConstraints = false
 		return button
 	}()
@@ -48,13 +48,17 @@ class LoginViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupView()
-		fetch()
     }
+	
+	override func viewWillLayoutSubviews() {
+		super.viewWillLayoutSubviews()
+		loginButton.isOpaque = false
+		loginButton.layer.cornerRadius = loginButton.frame.size.width / 2
+	}
+	
 	func setupView() {
 		view.backgroundColor = UIColor(patternImage: UIImage(named: "background.png")!)
 		view.addSubview(labelView)
-//		view.addSubview(loginTextField)
-//		view.addSubview(passwordTextField)
 		view.addSubview(loginButton)
 		setupConstraints()
 	}
@@ -67,38 +71,43 @@ class LoginViewController: UIViewController {
 			labelView.heightAnchor.constraint(equalToConstant: 60),
 			labelView.widthAnchor.constraint(equalToConstant: 80),
 			
-			//			loginTextField.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 50),
-//			loginTextField.leftAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leftAnchor, constant: 50),
-//			loginTextField.rightAnchor.constraint(equalTo: view.safeAreaLayoutGuide.rightAnchor, constant: -50),
-//			loginTextField.heightAnchor.constraint(equalToConstant: 75),
-//
-//			passwordTextField.topAnchor.constraint(equalTo: loginTextField.bottomAnchor, constant: 50),
-//			passwordTextField.leftAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leftAnchor, constant: 50),
-//			passwordTextField.rightAnchor.constraint(equalTo: view.safeAreaLayoutGuide.rightAnchor, constant: -50),
-//			passwordTextField.heightAnchor.constraint(equalToConstant: 75),
-			
-			loginButton.heightAnchor.constraint(equalToConstant: 75),
-			loginButton.leftAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leftAnchor, constant: 50),
-			loginButton.rightAnchor.constraint(equalTo: view.safeAreaLayoutGuide.rightAnchor, constant: -50),
-			loginButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -200)
+			loginButton.heightAnchor.constraint(equalToConstant: 200),
+			loginButton.widthAnchor.constraint(equalToConstant: 200),
+			loginButton.centerXAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerXAnchor),
+			loginButton.centerYAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerYAnchor)
 			
 			])
 	}
 	
-	func fetch() {
-		NetworkService.shared.getToken { result in
+	func checktoken() {
+		NetworkService.shared.checkToken { result in
 			switch result {
 			case .success(let data):
-				UserDefaults.standard.setValue(data.access_token, forKey: "token")
-				UserDefaults.standard.setValue(data.token_type, forKey: "tokenType")
-				UserDefaults.standard.synchronize()
+				self.tokenStatus = data.expires_type
 			case .failure(let error):
 				print(error)
+			}
 		}
 	}
+	
+	func fetch() {
+		checktoken()
+		if tokenStatus == "weak" || tokenStatus == "expired" {
+			NetworkService.shared.getToken { result in
+				switch result {
+				case .success(let data):
+					UserDefaults.standard.setValue(data.access_token, forKey: "token")
+					UserDefaults.standard.setValue(data.token_type, forKey: "tokenType")
+					UserDefaults.standard.synchronize()
+				case .failure(let error):
+					print(error)
+				}
+			}
+		}
 }
 	
 	@objc func loginButtonPressed() {
+		fetch()
 		let searchViewController = SearchViewController()
 		self.navigationController?.pushViewController(searchViewController, animated: true)
 		print("Login Success")

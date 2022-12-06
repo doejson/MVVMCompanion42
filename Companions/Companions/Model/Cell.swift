@@ -22,7 +22,7 @@ protocol Configurable {
 			let label = UILabel()
 			label.numberOfLines = 0
 			label.textColor = .white
-			label.font = UIFont.systemFont(ofSize: 18, weight: .bold)
+			label.font = UIFont.systemFont(ofSize: 15, weight: .bold)
 			label.translatesAutoresizingMaskIntoConstraints = false
 			return label
 		}()
@@ -31,7 +31,7 @@ protocol Configurable {
 			let label = UILabel()
 			label.numberOfLines = 0
 			label.textColor = .white
-			label.font = UIFont.systemFont(ofSize: 18, weight: .bold)
+			label.font = UIFont.systemFont(ofSize: 15, weight: .bold)
 			label.adjustsFontSizeToFitWidth = true
 			label.translatesAutoresizingMaskIntoConstraints = false
 			return label
@@ -102,11 +102,8 @@ extension Cell: Configurable {
 	func configure(model: Model) {
 		name.text = model.name
 		mark.text = model.mark
-		if model.validated == true {
-			validated.text = "✅"
-		} else {
-			validated.text = "❌"
-		}
-		
+		//Kolxoz
+		//TODO: re-code this shit
+		model.validated == true ? (validated.text = "✅") : (validated.text = "❌")
 	}
 }

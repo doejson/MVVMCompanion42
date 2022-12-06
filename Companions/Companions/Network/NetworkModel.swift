@@ -11,7 +11,7 @@ import Foundation
 let userName = UserDefaults.standard.string(forKey: "user")
 
 struct Web {
-
+	
 	static let scheme = "https"
 	static let api = "api.intra.42.fr"
 	static let path = "/oauth/token/"
@@ -32,9 +32,9 @@ struct CheckToken: Codable {
 	
 	var expires_type: String {
 		switch expires_in_seconds {
-		case 3000...7200: return "okay"
-		case 1000...3000: return "medium"
-		case 50...1000: return "weak"
+		case 1000...7200: return "okay"
+		case 200...1000: return "medium"
+		case 0...200: return "weak"
 		default: return "expired"
 		}
 	}
@@ -50,6 +50,7 @@ struct ModelData: Codable {
 	let pool_year: String?
 	let location: String?
 	let active: Bool?
+	let cursus_users: [CursusModel]
 	let projects_users: [ProjectsUsersModel]?
 }
 
@@ -62,7 +63,7 @@ struct ProjectsUsersModel: Codable {
 	let project: ProjectInfoModel?
 	let cursusIDS: [Int]?
 	let markedAt: String?
-
+	
 	enum CodingKeys: String, CodingKey {
 		case id, occurrence
 		case finalMark = "final_mark"
@@ -72,7 +73,7 @@ struct ProjectsUsersModel: Codable {
 		case project
 		case cursusIDS = "cursus_ids"
 		case markedAt = "marked_at"
-
+		
 	}
 }
 
@@ -88,4 +89,14 @@ struct ProjectInfoModel: Codable {
 		case slug
 		case parentID = "parent_id"
 	}
+}
+
+struct CursusModel: Codable {
+	let grade: String?
+	let level: Float?
+	let cursus: CursusType?
+}
+
+struct CursusType: Codable {
+	let name: String?
 }

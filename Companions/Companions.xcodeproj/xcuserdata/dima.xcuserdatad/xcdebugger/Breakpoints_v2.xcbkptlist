@@ -3,4 +3,54 @@
    uuid = "B04A4A81-8262-4D1A-8400-34E352C02B00"
    type = "1"
    version = "2.0">
+   <Breakpoints>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "9A5B0464-2BFC-4AC1-804D-57136A176008"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Companions/View/LoginViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "96"
+            endingLineNumber = "96"
+            landmarkName = "fetch()"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "9A5B0464-2BFC-4AC1-804D-57136A176008 - 7f24763b8014b5ac"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Companions.LoginViewController.fetch() -&gt; ()"
+                  moduleName = "Companions"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/dima/Dev/MVVMCompanion42/Companions/Companions/View/LoginViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "96"
+                  endingLineNumber = "96"
+                  offsetFromSymbolStart = "1185">
+               </Location>
+               <Location
+                  uuid = "9A5B0464-2BFC-4AC1-804D-57136A176008 - 77e49eb8a10b28e7"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (Swift.Result&lt;Companions.Token, Swift.Error&gt;) -&gt; () in Companions.LoginViewController.fetch() -&gt; ()"
+                  moduleName = "Companions"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/dima/Dev/MVVMCompanion42/Companions/Companions/View/LoginViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "98"
+                  endingLineNumber = "98"
+                  offsetFromSymbolStart = "70">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+   </Breakpoints>
 </Bucket>
