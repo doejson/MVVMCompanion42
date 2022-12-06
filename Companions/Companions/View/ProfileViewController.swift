@@ -16,11 +16,9 @@ class ProfileViewController: UIViewController {
 	
 	var delegate: ProfileViewControllerProtocol?
 	
-	
 	private lazy var projectInfoData: [ProjectsUsersModel] = []
 	private lazy var arrayWithCellData: [ProjectInfoModel] = []
 	private lazy var cursusData: [CursusModel] = []
-	
 	
 	let profileImage: UIImageView = {
 		let image = UIImageView(frame: CGRectMake(0, 0, 150, 150))
@@ -37,7 +35,20 @@ class ProfileViewController: UIViewController {
 	let nickLabel: UILabel = {
 		let label = UILabel()
 		label.text = "User not Found"
+		label.adjustsFontSizeToFitWidth = true
 		label.tintColor = .white
+		label.textColor = .white
+		label.font = UIFont.systemFont(ofSize: 20, weight: .bold)
+		label.translatesAutoresizingMaskIntoConstraints = false
+		return label
+		
+	}()
+	
+	let locationLabel: UILabel = {
+		let label = UILabel()
+		label.adjustsFontSizeToFitWidth = true
+		label.tintColor = .white
+		label.textAlignment = .center
 		label.textColor = .white
 		label.font = UIFont.systemFont(ofSize: 20, weight: .bold)
 		label.translatesAutoresizingMaskIntoConstraints = false
@@ -113,7 +124,7 @@ class ProfileViewController: UIViewController {
 	
 	func setupView() {
 		view.backgroundColor = UIColor(patternImage: UIImage(named: "background.png")!)
-		view.addSubviews([profileImage, nickLabel, emailLabel, walletLabel,pointsLabel,currentLvl,currentLvlLabel, tableView])
+		view.addSubviews([profileImage, nickLabel,locationLabel, emailLabel, walletLabel,pointsLabel,currentLvl,currentLvlLabel, tableView])
 		setupConstraints()
 		fetchData()
 		setupTabelView()
@@ -129,8 +140,13 @@ class ProfileViewController: UIViewController {
 			
 			nickLabel.topAnchor.constraint(equalTo: profileImage.topAnchor),
 			nickLabel.heightAnchor.constraint(equalToConstant: 40),
+			nickLabel.widthAnchor.constraint(equalToConstant: 100),
 			nickLabel.leftAnchor.constraint(equalTo: profileImage.rightAnchor, constant: 10),
-			nickLabel.rightAnchor.constraint(equalTo: view.safeAreaLayoutGuide.rightAnchor, constant: -10),
+			
+			locationLabel.topAnchor.constraint(equalTo: profileImage.topAnchor),
+			locationLabel.heightAnchor.constraint(equalToConstant: 40),
+			locationLabel.leftAnchor.constraint(equalTo: nickLabel.rightAnchor, constant: 10),
+			locationLabel.rightAnchor.constraint(equalTo: view.safeAreaLayoutGuide.rightAnchor, constant: -10),
 			
 			emailLabel.topAnchor.constraint(equalTo: nickLabel.bottomAnchor),
 			emailLabel.heightAnchor.constraint(equalToConstant: 30),
@@ -188,6 +204,7 @@ class ProfileViewController: UIViewController {
 					self.tableView.reloadData()
 					self.emailLabel.text = data.email
 					self.nickLabel.text = data.login
+					self.locationLabel.text = self.helloYandex(email: data.email ?? "Moscow")
 					self.walletLabel.text = "wallet: \(data.wallet ?? 0)₳"
 					self.pointsLabel.text = "evaluation points: \(data.correction_point ?? 0)"
 					self.currentLvl.setProgress(levelProgress, animated: false)
@@ -198,6 +215,20 @@ class ProfileViewController: UIViewController {
 				print(error)
 			}
 		}
+	}
+	
+	func helloYandex(email: String) -> String {
+		let mail = email
+		let result = String(mail.split(separator: "@")[1])
+		var campusName: String {
+			switch result {
+			case "student.21-school.ru": return "📍Moscow"
+			case "student.42.fr": return "📍Paris"
+			case "student.42tokyo.jp": return "📍Tokyo"
+			default: return "📍Adelaide"
+			}
+		}
+		return campusName
 	}
 	
 	func callToViewModelForUpdate() {

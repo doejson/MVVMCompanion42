@@ -65,7 +65,6 @@ class SearchViewController: UIViewController, ProfileViewControllerProtocol {
 		profileViewController.delegate = self
 		userName == "" || userName == "42" ? showAllert() : self.navigationController?.pushViewController(profileViewController, animated: true)
 		print("Search Success")
-		
 	}
 	
 	private func showAllert() {
