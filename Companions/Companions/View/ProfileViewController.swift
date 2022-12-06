@@ -49,6 +49,7 @@ class ProfileViewController: UIViewController {
 		let label = UILabel()
 		label.tintColor = .white
 		label.textColor = .white
+		label.adjustsFontSizeToFitWidth = true
 		label.font = UIFont.systemFont(ofSize: 16, weight: .bold)
 		label.translatesAutoresizingMaskIntoConstraints = false
 		return label

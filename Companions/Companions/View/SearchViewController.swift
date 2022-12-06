@@ -63,7 +63,7 @@ class SearchViewController: UIViewController, ProfileViewControllerProtocol {
 		let profileViewController = ProfileViewController()
 		userName = searchTextField.text?.lowercased()
 		profileViewController.delegate = self
-		userName == "" ? showAllert() : self.navigationController?.pushViewController(profileViewController, animated: true)
+		userName == "" || userName == "42" ? showAllert() : self.navigationController?.pushViewController(profileViewController, animated: true)
 		print("Search Success")
 		
 	}

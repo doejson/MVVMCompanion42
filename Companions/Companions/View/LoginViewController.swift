@@ -92,7 +92,7 @@ class LoginViewController: UIViewController {
 	
 	func fetch() {
 		checktoken()
-		if tokenStatus == "weak" || tokenStatus == "expired" {
+		if tokenStatus == "weak" || tokenStatus == "expired" || tokenStatus == nil {
 			NetworkService.shared.getToken { result in
 				switch result {
 				case .success(let data):
