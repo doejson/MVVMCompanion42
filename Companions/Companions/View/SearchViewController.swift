@@ -67,6 +67,10 @@ class SearchViewController: UIViewController, ProfileViewControllerProtocol {
 		print("Search Success")
 	}
 	
+	deinit {
+		print ("Search View Controller succesfully Deinited")
+	}
+	
 	private func showAllert() {
 		
 	}

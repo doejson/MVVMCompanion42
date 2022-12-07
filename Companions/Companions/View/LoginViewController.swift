@@ -50,9 +50,13 @@ class LoginViewController: UIViewController {
         setupView()
     }
 	
+	override func viewWillAppear(_ animated: Bool) {
+		super.viewWillAppear(animated)
+		print(#function)
+	}
+	
 	override func viewWillLayoutSubviews() {
 		super.viewWillLayoutSubviews()
-		loginButton.isOpaque = false
 		loginButton.layer.cornerRadius = loginButton.frame.size.width / 2
 	}
 	
@@ -111,7 +115,6 @@ class LoginViewController: UIViewController {
 		let searchViewController = SearchViewController()
 		self.navigationController?.pushViewController(searchViewController, animated: true)
 		print("Login Success")
-		
 		print(UserDefaults.standard.value(forKey: "token"))
 		print(UserDefaults.standard.value(forKey: "tokenType"))
 	}
