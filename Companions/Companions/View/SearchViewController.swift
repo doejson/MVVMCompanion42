@@ -15,7 +15,7 @@ class SearchViewController: UIViewController, ProfileViewControllerProtocol {
 		let search = UITextField()
 		search.font = UIFont.systemFont(ofSize: 20, weight: .bold)
 		search.textColor = .white
-		search.placeholder = "Search ..."
+		search.placeholder = K.search
 		search.backgroundColor = .lightGray
 		search.alpha = 0.85
 		search.keyboardType = UIKeyboardType.default
@@ -53,7 +53,7 @@ class SearchViewController: UIViewController, ProfileViewControllerProtocol {
 	
 	//MARK: - Methods
 	private func setupView() {
-		view.backgroundColor = UIColor(patternImage: UIImage(named: "background.png")!)
+		view.backgroundColor = UIColor(patternImage: UIImage(named: K.background)!)
 		view.addSubview(searchTextField)
 		view.addSubview(searchButton)
 		setupConstraints()

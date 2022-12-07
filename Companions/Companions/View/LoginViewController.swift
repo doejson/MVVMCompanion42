@@ -9,9 +9,7 @@ import UIKit
 
 class LoginViewController: UIViewController {
 	
-	var token: String?
-	var tokenType: String?
-	var tokenStatus: String?
+	var viewModel = LoginViewModel()
 	
 	let loginTextField: UITextField = {
 		let textField = UITextField()
@@ -31,7 +29,7 @@ class LoginViewController: UIViewController {
 	
 	let labelView: UIImageView = {
 		let view = UIImageView()
-		view.image = UIImage(named: "logo.png")
+		view.image = UIImage(named: K.logo)
 		view.translatesAutoresizingMaskIntoConstraints = false
 		return view
 	}()
@@ -52,7 +50,6 @@ class LoginViewController: UIViewController {
 	
 	override func viewWillAppear(_ animated: Bool) {
 		super.viewWillAppear(animated)
-		print(#function)
 	}
 	
 	override func viewWillLayoutSubviews() {
@@ -61,7 +58,7 @@ class LoginViewController: UIViewController {
 	}
 	
 	func setupView() {
-		view.backgroundColor = UIColor(patternImage: UIImage(named: "background.png")!)
+		view.backgroundColor = UIColor(patternImage: UIImage(named: K.background )!)
 		view.addSubview(labelView)
 		view.addSubview(loginButton)
 		setupConstraints()
@@ -83,35 +80,8 @@ class LoginViewController: UIViewController {
 			])
 	}
 	
-	func checktoken() {
-		NetworkService.shared.checkToken { result in
-			switch result {
-			case .success(let data):
-				self.tokenStatus = data.expires_type
-			case .failure(let error):
-				print(error)
-			}
-		}
-	}
-	
-	func fetch() {
-		checktoken()
-		if tokenStatus == "weak" || tokenStatus == "expired" || tokenStatus == nil {
-			NetworkService.shared.getToken { result in
-				switch result {
-				case .success(let data):
-					UserDefaults.standard.setValue(data.access_token, forKey: "token")
-					UserDefaults.standard.setValue(data.token_type, forKey: "tokenType")
-					UserDefaults.standard.synchronize()
-				case .failure(let error):
-					print(error)
-				}
-			}
-		}
-}
-	
 	@objc func loginButtonPressed() {
-		fetch()
+		callToViewModelForUpdate()
 		let searchViewController = SearchViewController()
 		self.navigationController?.pushViewController(searchViewController, animated: true)
 		print("Login Success")
@@ -120,9 +90,9 @@ class LoginViewController: UIViewController {
 	}
 	
 	func callToViewModelForUpdate() {
-		
+		viewModel.checktoken()
+		viewModel.fetch()
 	}
-
 
 }
 

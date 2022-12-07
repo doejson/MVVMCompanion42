@@ -14,6 +14,11 @@ struct K {
 	static let error = "Error"
 	static let loginButtonTitle = "Log In 💖"
 	static let reuseIdentifier = "Cell"
+	static let logo = "logo.png"
+	static let profile = "trooper.jpg"
+	static let background = "background.png"
+	static let userError = "User not Found"
+	static let search = "Search ..."
 }
 
 

@@ -27,14 +27,14 @@ class ProfileViewController: UIViewController {
 		image.layer.borderColor = UIColor.white.cgColor
 		image.layer.cornerRadius = image.frame.size.width / 2
 		image.clipsToBounds = true
-		image.image = UIImage(named: "trooper.jpg")
+		image.image = UIImage(named: K.profile)
 		image.translatesAutoresizingMaskIntoConstraints = false
 		return image
 	}()
 	
 	let nickLabel: UILabel = {
 		let label = UILabel()
-		label.text = "User not Found"
+		label.text = K.userError
 		label.adjustsFontSizeToFitWidth = true
 		label.tintColor = .white
 		label.textColor = .white
@@ -123,7 +123,7 @@ class ProfileViewController: UIViewController {
 	}
 	
 	func setupView() {
-		view.backgroundColor = UIColor(patternImage: UIImage(named: "background.png")!)
+		view.backgroundColor = UIColor(patternImage: UIImage(named: K.background)!)
 		view.addSubviews([profileImage, nickLabel,locationLabel, emailLabel, walletLabel,pointsLabel,currentLvl,currentLvlLabel, tableView])
 		setupConstraints()
 		fetchData()
