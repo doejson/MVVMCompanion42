@@ -21,7 +21,7 @@ class ProfileViewController: UIViewController {
 	private lazy var cursusData: [CursusModel] = []
 	
 	let profileImage: UIImageView = {
-		let image = UIImageView(frame: CGRectMake(0, 0, 150, 150))
+		let image = UIImageView()
 		image.layer.borderWidth = 1.0
 		image.layer.masksToBounds = false
 		image.layer.borderColor = UIColor.white.cgColor
@@ -194,7 +194,7 @@ class ProfileViewController: UIViewController {
 			switch result {
 			case .success(let data):
 				self.projectInfoData = data.projects_users ?? []
-				self.cursusData = data.cursus_users ?? []
+				self.cursusData = data.cursus_users 
 				//Cringe
 				guard let level = self.cursusData[1].level else { return }
 				let levelProgress = level.truncatingRemainder(dividingBy: 1)

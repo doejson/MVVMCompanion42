@@ -22,6 +22,7 @@ protocol Configurable {
 			let label = UILabel()
 			label.numberOfLines = 0
 			label.textColor = .white
+			label.adjustsFontSizeToFitWidth = true
 			label.font = UIFont.systemFont(ofSize: 15, weight: .bold)
 			label.translatesAutoresizingMaskIntoConstraints = false
 			return label

@@ -79,9 +79,17 @@
 				5A8C0BF229255B2C00EDF33B /* Model */,
 				5A8C0BF329255B3600EDF33B /* View */,
 				5A8C0BF429255B4B00EDF33B /* ViewModel */,
+				5A24304D294122C900F79DD4 /* Tests */,
 				5A8C0BF529255B5F00EDF33B /* system */,
 			);
 			path = Companions;
+			sourceTree = "<group>";
+		};
+		5A24304D294122C900F79DD4 /* Tests */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Tests;
 			sourceTree = "<group>";
 		};
 		5A8C0BF229255B2C00EDF33B /* Model */ = {

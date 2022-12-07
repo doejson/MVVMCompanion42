@@ -115,8 +115,8 @@ class LoginViewController: UIViewController {
 		let searchViewController = SearchViewController()
 		self.navigationController?.pushViewController(searchViewController, animated: true)
 		print("Login Success")
-		print(UserDefaults.standard.value(forKey: "token"))
-		print(UserDefaults.standard.value(forKey: "tokenType"))
+		print(UserDefaults.standard.value(forKey: "token") ?? "")
+		print(UserDefaults.standard.value(forKey: "tokenType") ?? "")
 	}
 	
 	func callToViewModelForUpdate() {
