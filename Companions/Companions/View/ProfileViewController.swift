@@ -25,7 +25,7 @@ class ProfileViewController: UIViewController {
 		image.layer.borderWidth = 1.0
 		image.layer.masksToBounds = false
 		image.layer.borderColor = UIColor.white.cgColor
-		image.layer.cornerRadius = image.frame.size.width / 2
+		image.layer.cornerRadius = 3
 		image.clipsToBounds = true
 		image.image = UIImage(named: K.profile)
 		image.translatesAutoresizingMaskIntoConstraints = false
@@ -123,7 +123,8 @@ class ProfileViewController: UIViewController {
 	}
 	
 	func setupView() {
-		view.backgroundColor = UIColor(patternImage: UIImage(named: K.background)!)
+		guard let image = UIImage(named: K.background) else { return }
+		view.backgroundColor = UIColor(patternImage: image)
 		view.addSubviews([profileImage, nickLabel,locationLabel, emailLabel, walletLabel,pointsLabel,currentLvl,currentLvlLabel, tableView])
 		setupConstraints()
 		fetchData()
@@ -209,6 +210,7 @@ class ProfileViewController: UIViewController {
 					self.pointsLabel.text = "evaluation points: \(data.correction_point ?? 0)"
 					self.currentLvl.setProgress(levelProgress, animated: false)
 					self.currentLvlLabel.text = stringLevel
+					//MARK: - Nado ili ne nado ?
 					self.reloadInputViews()
 				}
 			case .failure(let error):

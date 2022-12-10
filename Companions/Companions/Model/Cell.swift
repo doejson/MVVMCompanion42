@@ -15,7 +15,7 @@ protocol Configurable {
 	final class Cell: UITableViewCell {
 		
 		// MARK: Static
-		static let identifier = K.reuseIdentifier
+		let identifier = K.reuseIdentifier
 		
 		// MARK: Properties
 		private let name: UILabel = {

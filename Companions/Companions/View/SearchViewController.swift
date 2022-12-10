@@ -42,7 +42,7 @@ class SearchViewController: UIViewController, ProfileViewControllerProtocol {
 	//MARK: - Lifecycle
 	override func viewDidLoad() {
 		super.viewDidLoad()
-		searchTextField.delegate = self
+//		searchTextField.delegate = self
 		setupView()
 	}
 	override func viewWillLayoutSubviews() {
@@ -70,12 +70,15 @@ class SearchViewController: UIViewController, ProfileViewControllerProtocol {
 	deinit {
 		print ("Search View Controller succesfully Deinited")
 	}
-	
+	//TODO: - Do
 	private func showAllert() {
 		
 	}
+}
+
+extension SearchViewController {
 	
-	private func setupConstraints() {
+	func setupConstraints() {
 		NSLayoutConstraint.activate([
 			
 			searchTextField.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 100),
@@ -89,36 +92,5 @@ class SearchViewController: UIViewController, ProfileViewControllerProtocol {
 			searchButton.centerYAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerYAnchor),
 			
 		])
-	}
-	
-}
-
-extension SearchViewController: UITextFieldDelegate {
-	
-	func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-		searchTextField.endEditing(true)
-		guard let text = searchTextField.text else {
-			return false
-		}
-		print (text)
-		return true
-	}
-	
-	func textFieldShouldEndEditing(_ textField: UITextField) -> Bool {
-		//TODO: Use Guard 😎
-		if textField.text != "" {
-			return true
-		} else {
-			textField.placeholder = "Type something"
-			return false
-		}
-	}
-	
-	func textFieldDidEndEditing(_ textField: UITextField) {
-		
-		if let user = searchTextField.text?.lowercased() {
-			UserDefaults.standard.setValue(user, forKey: "user")
-		}
-		searchTextField.text = ""
 	}
 }
