@@ -21,11 +21,11 @@ class ProfileViewController: UIViewController {
 	private lazy var cursusData: [CursusModel] = []
 	
 	let profileImage: UIImageView = {
-		let image = UIImageView()
+		let image = UIImageView(frame: CGRect(x: 0, y: 0, width: 150, height: 150))
+		image.layer.cornerRadius = image.frame.size.height / 2
 		image.layer.borderWidth = 1.0
 		image.layer.masksToBounds = false
 		image.layer.borderColor = UIColor.white.cgColor
-		image.layer.cornerRadius = 3
 		image.clipsToBounds = true
 		image.image = UIImage(named: K.profile)
 		image.translatesAutoresizingMaskIntoConstraints = false
@@ -264,3 +264,10 @@ extension ProfileViewController: UITableViewDelegate, UITableViewDataSource {
 	}
 	
 }
+
+/* TODO: Отрисовка слоя с фоткой без тормозов ?!
+						Скругление индикатора прогресс бара ?!
+ 
+						Разница между ?? и guard
+				
+ */

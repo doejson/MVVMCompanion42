@@ -42,7 +42,6 @@ class SearchViewController: UIViewController, ProfileViewControllerProtocol {
 	//MARK: - Lifecycle
 	override func viewDidLoad() {
 		super.viewDidLoad()
-//		searchTextField.delegate = self
 		setupView()
 	}
 	override func viewWillLayoutSubviews() {
