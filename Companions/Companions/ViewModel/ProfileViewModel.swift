@@ -9,10 +9,24 @@ import Foundation
 
 protocol ProfileViewModelProtocol {
 	
-	
+	func fetchData()
+	func helloYandex()
 }
 
 class ProfileViewModel {
 	var x = Dynamic("")
+	
+}
+
+extension ProfileViewModel: ProfileViewModelProtocol {
+	
+	func fetchData() {
+		<#code#>
+	}
+	
+	func helloYandex() {
+		<#code#>
+	}
+	
 	
 }

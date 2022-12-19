@@ -6,12 +6,22 @@
 //
 
 import Foundation
+import UIKit
+import Network
+
+protocol LoginViewModelProtocol {
+	
+	var isNetworkAvilaliable: Bool { get set }
+	var isUserAlreadyLogIn: Bool { get set }
+	
+}
 
 class LoginViewModel: NSObject {
 	
 	var token: String?
 	var tokenType: String?
 	var tokenStatus: String?
+	var connection: NWPathMonitor?
 	
 	func checktoken() {
 		NetworkService.shared.checkToken { result in
@@ -40,4 +50,33 @@ class LoginViewModel: NSObject {
 		}
 	}
 
+}
+
+extension LoginViewModel: LoginViewModelProtocol {
+
+	var isNetworkAvilaliable: Bool {
+		get {
+			if connection?.currentPath.status == .requiresConnection {
+				return true
+				print ("okay")
+			} else {
+				return false
+				print ("no connection")
+			}
+		}
+		set {
+			<#code#>
+		}
+	}
+	
+	var isUserAlreadyLogIn: Bool {
+		get {
+			<#code#>
+		}
+		set {
+			<#code#>
+		}
+	}
+	
+	
 }

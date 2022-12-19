@@ -9,9 +9,25 @@ import Foundation
 
 protocol SearchViewModelProtocol {
 	
+	func buttonPressed()
+	func showAllert()
+	
 }
 
 class SearchViewModel {
 	var hello = Dynamic("")
+	
+}
+
+extension SearchViewModel: SearchViewModelProtocol {
+	
+	func buttonPressed() {
+		<#code#>
+	}
+	
+	func showAllert() {
+		<#code#>
+	}
+	
 	
 }
