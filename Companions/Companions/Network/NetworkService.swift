@@ -63,21 +63,25 @@ class NetworkService: APIService {
 		let urlSession = URLSession(configuration: .default)
 		var req = URLRequest(url: urlToken)
 		req.httpMethod = "POST"
-		let task = urlSession.dataTask(with: req) { (data,response,error) in
-			if let error = error {
-				completion(.failure(error))
-			}
+		
+		DispatchQueue.global(qos: .utility).async {
 			
-			if let data = data {
-				do {
-					let decodedData = try JSONDecoder().decode(Token.self, from: data)
-					completion(.success(decodedData))
-				} catch {
+			let task = urlSession.dataTask(with: req) { (data,response,error) in
+				if let error = error {
 					completion(.failure(error))
 				}
+				
+				if let data = data {
+					do {
+						let decodedData = try JSONDecoder().decode(Token.self, from: data)
+						completion(.success(decodedData))
+					} catch {
+						completion(.failure(error))
+					}
+				}
 			}
+			task.resume()
 		}
-		task.resume()
 	}
 	
 	func checkToken(completion: @escaping (Result<CheckToken, Error>) -> Void) {
@@ -90,20 +94,23 @@ class NetworkService: APIService {
 		req.httpMethod = "GET"
 		req.addValue(tokenType + " " + token, forHTTPHeaderField: "Authorization")
 		
-		let task = urlSession.dataTask(with: req) { (data,response,error) in
-			if let error = error {
-				completion(.failure(error))
-			}
-			if let data = data {
-				do {
-					let decodedData = try JSONDecoder().decode(CheckToken.self, from: data)
-					completion(.success(decodedData))
-				} catch {
+		DispatchQueue.global(qos: .utility).async {
+			
+			let task = urlSession.dataTask(with: req) { (data,response,error) in
+				if let error = error {
 					completion(.failure(error))
 				}
+				if let data = data {
+					do {
+						let decodedData = try JSONDecoder().decode(CheckToken.self, from: data)
+						completion(.success(decodedData))
+					} catch {
+						completion(.failure(error))
+					}
+				}
 			}
+			task.resume()
 		}
-		task.resume()
 	}
 	
 	func loadUser(userName: String?, completion: @escaping (Result<ModelData, Error>) -> Void) {

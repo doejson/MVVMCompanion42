@@ -27,7 +27,9 @@ class LoginViewModel: NSObject {
 		NetworkService.shared.checkToken { result in
 			switch result {
 			case .success(let data):
-				self.tokenStatus = data.expires_type
+				DispatchQueue.main.async {
+					self.tokenStatus = data.expires_type
+				}
 			case .failure(let error):
 				print(error)
 			}

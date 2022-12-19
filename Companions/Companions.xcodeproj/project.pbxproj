@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		325C24F829343EF9006F1EFD /* NetworkServiceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 325C24F729343EF9006F1EFD /* NetworkServiceProtocol.swift */; };
 		325C24FA29343F06006F1EFD /* NetworkModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 325C24F929343F06006F1EFD /* NetworkModel.swift */; };
+		3268B92129449A8000159918 /* KeychainService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3268B92029449A8000159918 /* KeychainService.swift */; };
 		32A8721F292A837F00549ED8 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32A8721E292A837F00549ED8 /* SearchViewController.swift */; };
 		32A87221292A8A5100549ED8 /* Cell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32A87220292A8A5100549ED8 /* Cell.swift */; };
 		32A87223292A8A8100549ED8 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32A87222292A8A8100549ED8 /* Extensions.swift */; };
@@ -28,6 +29,8 @@
 /* Begin PBXFileReference section */
 		325C24F729343EF9006F1EFD /* NetworkServiceProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkServiceProtocol.swift; sourceTree = "<group>"; };
 		325C24F929343F06006F1EFD /* NetworkModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkModel.swift; sourceTree = "<group>"; };
+		3268B91F29449A4500159918 /* Companions.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Companions.entitlements; sourceTree = "<group>"; };
+		3268B92029449A8000159918 /* KeychainService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainService.swift; sourceTree = "<group>"; };
 		32A8721E292A837F00549ED8 /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
 		32A87220292A8A5100549ED8 /* Cell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Cell.swift; sourceTree = "<group>"; };
 		32A87222292A8A8100549ED8 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
@@ -77,6 +80,8 @@
 		5A1F59A32925433100FF854E /* Companions */ = {
 			isa = PBXGroup;
 			children = (
+				3268B91F29449A4500159918 /* Companions.entitlements */,
+				3268B92029449A8000159918 /* KeychainService.swift */,
 				5A8C0BF8292564A700EDF33B /* Network */,
 				5A8C0BF229255B2C00EDF33B /* Model */,
 				5A8C0BF329255B3600EDF33B /* View */,
@@ -236,6 +241,7 @@
 				32A87223292A8A8100549ED8 /* Extensions.swift in Sources */,
 				5A8C0BF7292563A800EDF33B /* ProfileViewController.swift in Sources */,
 				325C24F829343EF9006F1EFD /* NetworkServiceProtocol.swift in Sources */,
+				3268B92129449A8000159918 /* KeychainService.swift in Sources */,
 				325C24FA29343F06006F1EFD /* NetworkModel.swift in Sources */,
 				5AA6D8FD292D44B100ABC850 /* Constants.swift in Sources */,
 			);
@@ -365,6 +371,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = Companions/Companions.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = B6J9G6DR26;
@@ -392,6 +399,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = Companions/Companions.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = B6J9G6DR26;

@@ -42,6 +42,7 @@ class LoginViewController: UIViewController {
 		button.translatesAutoresizingMaskIntoConstraints = false
 		return button
 	}()
+	
 	//MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -58,26 +59,11 @@ class LoginViewController: UIViewController {
 	}
 	
 	func setupView() {
-		view.backgroundColor = UIColor(patternImage: UIImage(named: K.background )!)
+		guard let image = UIImage(named: K.background) else { return }
+		view.backgroundColor = UIColor(patternImage: image)
 		view.addSubview(labelView)
 		view.addSubview(loginButton)
 		setupConstraints()
-	}
-	
-	func setupConstraints() {
-		NSLayoutConstraint.activate([
-			
-			labelView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
-			labelView.centerXAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerXAnchor),
-			labelView.heightAnchor.constraint(equalToConstant: 60),
-			labelView.widthAnchor.constraint(equalToConstant: 80),
-			
-			loginButton.heightAnchor.constraint(equalToConstant: 200),
-			loginButton.widthAnchor.constraint(equalToConstant: 200),
-			loginButton.centerXAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerXAnchor),
-			loginButton.centerYAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerYAnchor)
-			
-			])
 	}
 	
 	@objc func loginButtonPressed() {
@@ -94,5 +80,22 @@ class LoginViewController: UIViewController {
 		viewModel.fetch()
 	}
 
+}
+
+extension LoginViewController {
+	
+	func setupConstraints() {
+		NSLayoutConstraint.activate([
+			labelView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+			labelView.centerXAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerXAnchor),
+			labelView.heightAnchor.constraint(equalToConstant: 60),
+			labelView.widthAnchor.constraint(equalToConstant: 80),
+			
+			loginButton.heightAnchor.constraint(equalToConstant: 200),
+			loginButton.widthAnchor.constraint(equalToConstant: 200),
+			loginButton.centerXAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerXAnchor),
+			loginButton.centerYAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerYAnchor)
+		])
+	}
 }
 
