@@ -10,20 +10,20 @@ import UIKit
 import Network
 
 protocol LoginViewModelProtocol {
-	
-	var isNetworkAvilaliable: Bool { get set }
-	var isUserAlreadyLogIn: Bool { get set }
+//	var isUserAlreadyLogIn: Bool { get set }
+	func checkConnection()
+	func checktoken()
+	func fetch()
 	
 }
 
-class LoginViewModel: NSObject {
-	
+class LoginViewModel: LoginViewModelProtocol {
 	var token: String?
 	var tokenType: String?
 	var tokenStatus: String?
-	var connection: NWPathMonitor?
 	
 	func checktoken() {
+		checkConnection()
 		NetworkService.shared.checkToken { result in
 			switch result {
 			case .success(let data):
@@ -37,6 +37,7 @@ class LoginViewModel: NSObject {
 	}
 	
 	func fetch() {
+		checkConnection()
 		checktoken()
 		if tokenStatus == "weak" || tokenStatus == "expired" || tokenStatus == nil {
 			NetworkService.shared.getToken { result in
@@ -51,34 +52,16 @@ class LoginViewModel: NSObject {
 			}
 		}
 	}
-
-}
-
-extension LoginViewModel: LoginViewModelProtocol {
-
-	var isNetworkAvilaliable: Bool {
-		get {
-			if connection?.currentPath.status == .requiresConnection {
-				return true
-				print ("okay")
-			} else {
-				return false
-				print ("no connection")
-			}
-		}
-		set {
-			<#code#>
-		}
-	}
 	
-	var isUserAlreadyLogIn: Bool {
-		get {
-			<#code#>
-		}
-		set {
-			<#code#>
+	func checkConnection() {
+		let vc = NoNetworkVC()
+		if NetworkService.shared.isNetworkAvailable == true {
+			print("connection ok")
+		} else {
+			print("no connection")
 		}
 	}
 	
 	
+
 }

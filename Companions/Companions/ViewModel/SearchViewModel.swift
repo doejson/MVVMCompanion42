@@ -22,11 +22,11 @@ class SearchViewModel {
 extension SearchViewModel: SearchViewModelProtocol {
 	
 	func buttonPressed() {
-		<#code#>
+		
 	}
 	
 	func showAllert() {
-		<#code#>
+		
 	}
 	
 	

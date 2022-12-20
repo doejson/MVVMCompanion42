@@ -9,7 +9,7 @@ import UIKit
 
 class LoginViewController: UIViewController {
 	
-	var viewModel = LoginViewModel()
+	var viewModel: LoginViewModelProtocol = LoginViewModel()
 	
 	let loginTextField: UITextField = {
 		let textField = UITextField()
@@ -76,6 +76,7 @@ class LoginViewController: UIViewController {
 	}
 	
 	func callToViewModelForUpdate() {
+		viewModel.checkConnection()
 		viewModel.checktoken()
 		viewModel.fetch()
 	}

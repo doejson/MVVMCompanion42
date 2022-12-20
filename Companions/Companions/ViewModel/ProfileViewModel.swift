@@ -21,11 +21,11 @@ class ProfileViewModel {
 extension ProfileViewModel: ProfileViewModelProtocol {
 	
 	func fetchData() {
-		<#code#>
+		
 	}
 	
 	func helloYandex() {
-		<#code#>
+		
 	}
 	
 	

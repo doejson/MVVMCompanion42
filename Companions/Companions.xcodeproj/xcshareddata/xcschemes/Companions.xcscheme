@@ -58,7 +58,7 @@
          </EnvironmentVariable>
          <EnvironmentVariable
             key = "secret"
-            value = "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"
+            value = "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"
             isEnabled = "YES">
          </EnvironmentVariable>
       </EnvironmentVariables>

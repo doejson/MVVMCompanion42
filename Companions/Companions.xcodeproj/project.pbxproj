@@ -19,6 +19,7 @@
 		5A1F59AE2925433300FF854E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5A1F59AD2925433300FF854E /* Assets.xcassets */; };
 		5A2430502941316100F79DD4 /* Dynamic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A24304F2941316100F79DD4 /* Dynamic.swift */; };
 		5A2430522941406D00F79DD4 /* SearchViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A2430512941406D00F79DD4 /* SearchViewModel.swift */; };
+		5A3CBD5A295205E5003B7969 /* NoNetworkVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A3CBD59295205E5003B7969 /* NoNetworkVC.swift */; };
 		5A87D39D2925674800C440E4 /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A87D39C2925674800C440E4 /* LoginViewModel.swift */; };
 		5A8C0BF7292563A800EDF33B /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A8C0BF6292563A800EDF33B /* ProfileViewController.swift */; };
 		5A8C0BFA292564BD00EDF33B /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A8C0BF9292564BD00EDF33B /* NetworkService.swift */; };
@@ -42,6 +43,7 @@
 		5A1F59B22925433300FF854E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		5A24304F2941316100F79DD4 /* Dynamic.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Dynamic.swift; sourceTree = "<group>"; };
 		5A2430512941406D00F79DD4 /* SearchViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewModel.swift; sourceTree = "<group>"; };
+		5A3CBD59295205E5003B7969 /* NoNetworkVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoNetworkVC.swift; sourceTree = "<group>"; };
 		5A87D39C2925674800C440E4 /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
 		5A8C0BF6292563A800EDF33B /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		5A8C0BF9292564BD00EDF33B /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; usesTabs = 1; };
@@ -122,6 +124,7 @@
 				5A1F59A82925433200FF854E /* LoginViewController.swift */,
 				32A8721E292A837F00549ED8 /* SearchViewController.swift */,
 				5A8C0BF6292563A800EDF33B /* ProfileViewController.swift */,
+				5A3CBD59295205E5003B7969 /* NoNetworkVC.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -234,6 +237,7 @@
 				5A1F59A52925433200FF854E /* AppDelegate.swift in Sources */,
 				32A87221292A8A5100549ED8 /* Cell.swift in Sources */,
 				32A8721F292A837F00549ED8 /* SearchViewController.swift in Sources */,
+				5A3CBD5A295205E5003B7969 /* NoNetworkVC.swift in Sources */,
 				5A1F59A72925433200FF854E /* SceneDelegate.swift in Sources */,
 				5A2430502941316100F79DD4 /* Dynamic.swift in Sources */,
 				5A87D39D2925674800C440E4 /* LoginViewModel.swift in Sources */,

@@ -7,6 +7,7 @@
 
 import UIKit
 import AuthenticationServices
+import Network
 
 enum NetworkError: Error {
 	case invalidURL, noData, noToken, decodingError
@@ -16,6 +17,8 @@ class NetworkService: APIService {
 
 	static let shared: APIService = NetworkService()
 	private init() {}
+	
+	var connection: NWPathMonitor?
 	
 	let api = Web.api
 	let scheme = Web.scheme
@@ -137,5 +140,20 @@ class NetworkService: APIService {
 			}
 		}
 		task.resume()
+	}
+	
+	
+	var isNetworkAvailable: Bool {
+		get {
+			if connection?.currentPath.status == .requiresConnection {
+				print ("no connection")
+				return true
+				
+			} else {
+				print ("okay")
+				return false
+				
+			}
+		}
 	}
 }

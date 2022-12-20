@@ -11,6 +11,8 @@ protocol APIService {
 	
 	static var shared: APIService { get }
 	
+	var isNetworkAvailable: Bool { get }
+	
 	//MARK: - get token
 	func getToken(completion: @escaping (Result<Token, Error>) -> Void)
 		
@@ -19,5 +21,7 @@ protocol APIService {
 	
 	//MARK: - get user data
 	func loadUser(userName: String?, completion: @escaping (Result<ModelData, Error>) -> Void)
+	
+
 	
 }
