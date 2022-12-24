@@ -10,7 +10,6 @@ import UIKit
 import Network
 
 protocol LoginViewModelProtocol {
-//	var isUserAlreadyLogIn: Bool { get set }
 	func checkConnection()
 	func checktoken()
 	func fetch()
