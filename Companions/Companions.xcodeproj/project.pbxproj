@@ -20,6 +20,9 @@
 		5A2430502941316100F79DD4 /* Dynamic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A24304F2941316100F79DD4 /* Dynamic.swift */; };
 		5A2430522941406D00F79DD4 /* SearchViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A2430512941406D00F79DD4 /* SearchViewModel.swift */; };
 		5A5527342955649C0091F6BC /* ViewData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A5527332955649C0091F6BC /* ViewData.swift */; };
+		5A5B4B0C2957268300F79874 /* ProfileViewControllerTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A5B4B0B2957268300F79874 /* ProfileViewControllerTest.swift */; };
+		5A5B4B0E2957269400F79874 /* LoginViewControllerTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A5B4B0D2957269400F79874 /* LoginViewControllerTest.swift */; };
+		5A5B4B10295726A900F79874 /* SearchViewControllerTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A5B4B0F295726A900F79874 /* SearchViewControllerTest.swift */; };
 		5A87D39D2925674800C440E4 /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A87D39C2925674800C440E4 /* LoginViewModel.swift */; };
 		5A8C0BF7292563A800EDF33B /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A8C0BF6292563A800EDF33B /* ProfileViewController.swift */; };
 		5A8C0BFA292564BD00EDF33B /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A8C0BF9292564BD00EDF33B /* NetworkService.swift */; };
@@ -44,6 +47,9 @@
 		5A24304F2941316100F79DD4 /* Dynamic.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Dynamic.swift; sourceTree = "<group>"; };
 		5A2430512941406D00F79DD4 /* SearchViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewModel.swift; sourceTree = "<group>"; };
 		5A5527332955649C0091F6BC /* ViewData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewData.swift; sourceTree = "<group>"; };
+		5A5B4B0B2957268300F79874 /* ProfileViewControllerTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewControllerTest.swift; sourceTree = "<group>"; };
+		5A5B4B0D2957269400F79874 /* LoginViewControllerTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewControllerTest.swift; sourceTree = "<group>"; };
+		5A5B4B0F295726A900F79874 /* SearchViewControllerTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewControllerTest.swift; sourceTree = "<group>"; };
 		5A87D39C2925674800C440E4 /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
 		5A8C0BF6292563A800EDF33B /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		5A8C0BF9292564BD00EDF33B /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; usesTabs = 1; };
@@ -97,6 +103,9 @@
 		5A24304D294122C900F79DD4 /* Tests */ = {
 			isa = PBXGroup;
 			children = (
+				5A5B4B0D2957269400F79874 /* LoginViewControllerTest.swift */,
+				5A5B4B0F295726A900F79874 /* SearchViewControllerTest.swift */,
+				5A5B4B0B2957268300F79874 /* ProfileViewControllerTest.swift */,
 			);
 			path = Tests;
 			sourceTree = "<group>";
@@ -233,6 +242,7 @@
 			files = (
 				5A8C0BFA292564BD00EDF33B /* NetworkService.swift in Sources */,
 				5A1F59A92925433200FF854E /* LoginViewController.swift in Sources */,
+				5A5B4B0C2957268300F79874 /* ProfileViewControllerTest.swift in Sources */,
 				5A2430522941406D00F79DD4 /* SearchViewModel.swift in Sources */,
 				5A1F59A52925433200FF854E /* AppDelegate.swift in Sources */,
 				5A5527342955649C0091F6BC /* ViewData.swift in Sources */,
@@ -245,8 +255,10 @@
 				32A87223292A8A8100549ED8 /* Extensions.swift in Sources */,
 				5A8C0BF7292563A800EDF33B /* ProfileViewController.swift in Sources */,
 				325C24F829343EF9006F1EFD /* NetworkServiceProtocol.swift in Sources */,
+				5A5B4B0E2957269400F79874 /* LoginViewControllerTest.swift in Sources */,
 				3268B92129449A8000159918 /* KeychainService.swift in Sources */,
 				325C24FA29343F06006F1EFD /* NetworkModel.swift in Sources */,
+				5A5B4B10295726A900F79874 /* SearchViewControllerTest.swift in Sources */,
 				5AA6D8FD292D44B100ABC850 /* Constants.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

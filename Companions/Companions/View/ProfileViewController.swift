@@ -8,13 +8,9 @@
 import Foundation
 import UIKit
 
-protocol ProfileViewControllerProtocol {
-	var userName: String? { get set }
-}
-
 class ProfileViewController: UIViewController {
 	
-	var delegate: ProfileViewControllerProtocol?
+	
 	var viewModel: ProfileViewModelProtocol
 	
 	init(_ viewModel: ProfileViewModel) {

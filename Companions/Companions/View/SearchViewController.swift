@@ -59,9 +59,8 @@ class SearchViewController: UIViewController, ProfileViewControllerProtocol {
 	}
 	
 	@objc func searchButtonPressed() {
-		let profileViewController = ProfileViewController(ProfileViewModel())
 		userName = searchTextField.text?.lowercased()
-		profileViewController.delegate = self
+		let profileViewController = ProfileViewController(ProfileViewModel())
 		userName == "" || userName == "42" ? showAllert() : self.navigationController?.pushViewController(profileViewController, animated: true)
 		print("Search Success")
 	}
