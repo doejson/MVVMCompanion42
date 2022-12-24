@@ -10,6 +10,7 @@ import UIKit
 class SearchViewController: UIViewController, ProfileViewControllerProtocol {
 	
 	var userName: String?
+	private var viewModel: SearchViewModelProtocol = SearchViewModel()
 	
 	let searchTextField: UITextField = {
 		let search = UITextField()
@@ -60,18 +61,18 @@ class SearchViewController: UIViewController, ProfileViewControllerProtocol {
 	
 	@objc func searchButtonPressed() {
 		userName = searchTextField.text?.lowercased()
-		let profileViewController = ProfileViewController(ProfileViewModel())
-		userName == "" || userName == "42" ? showAllert() : self.navigationController?.pushViewController(profileViewController, animated: true)
-		print("Search Success")
+		viewModel.buttonPressed(sender: self)
 	}
 	
 	deinit {
 		print ("Search View Controller succesfully Deinited")
 	}
 	//TODO: - Do
-	private func showAllert() {
+	
+	func callToViewModel() {
 		
 	}
+	
 }
 
 extension SearchViewController {

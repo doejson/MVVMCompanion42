@@ -6,10 +6,11 @@
 //
 
 import Foundation
+import UIKit
 
 protocol SearchViewModelProtocol {
 	
-	func buttonPressed()
+	func buttonPressed(sender: UIViewController)
 	func showAllert()
 	
 }
@@ -21,12 +22,15 @@ class SearchViewModel {
 
 extension SearchViewModel: SearchViewModelProtocol {
 	
-	func buttonPressed() {
+	@inlinable internal func buttonPressed(sender: UIViewController) {
+		 let profileViewController = ProfileViewController(ProfileViewModel())
 		
+		 userName == "" || userName == "42" ? showAllert() : sender.navigationController?.pushViewController(profileViewController, animated: true)
+		 print("Search Success")
 	}
 	
-	func showAllert() {
-		
+	@inlinable internal func showAllert() {
+		print("Kyky ne rabotaet 🤷‍♂️")
 	}
 	
 	

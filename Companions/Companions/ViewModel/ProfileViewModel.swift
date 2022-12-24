@@ -73,8 +73,12 @@ extension ProfileViewModel: ProfileViewModelProtocol {
 	}
 	
 	var levelProgress: Float {
-		guard let level = self.cursusData[1].level else { return 0.1 }
-		return level.truncatingRemainder(dividingBy: 1)
+//		guard let level = self.cursusData[1].level else { return 0.1 }
+		
+		//Mock
+		 let level = 10.1
+
+		return Float(level.truncatingRemainder(dividingBy: 1))
 	}
 
 	var tableViewCount: Int {
