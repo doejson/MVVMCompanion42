@@ -59,7 +59,7 @@ class SearchViewController: UIViewController, ProfileViewControllerProtocol {
 	}
 	
 	@objc func searchButtonPressed() {
-		let profileViewController = ProfileViewController()
+		let profileViewController = ProfileViewController(ProfileViewModel())
 		userName = searchTextField.text?.lowercased()
 		profileViewController.delegate = self
 		userName == "" || userName == "42" ? showAllert() : self.navigationController?.pushViewController(profileViewController, animated: true)
@@ -80,15 +80,15 @@ extension SearchViewController {
 	func setupConstraints() {
 		NSLayoutConstraint.activate([
 			
-			searchTextField.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 100),
+			searchTextField.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 50),
 			searchTextField.leftAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leftAnchor, constant: 50),
 			searchTextField.rightAnchor.constraint(equalTo: view.safeAreaLayoutGuide.rightAnchor, constant: -50),
 			searchTextField.heightAnchor.constraint(equalToConstant: 50),
 			
 			searchButton.heightAnchor.constraint(equalToConstant: 200),
 			searchButton.widthAnchor.constraint(equalToConstant: 200),
-			searchButton.centerXAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerXAnchor),
-			searchButton.centerYAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerYAnchor),
+			searchButton.topAnchor.constraint(equalTo: searchTextField.bottomAnchor, constant: 50),
+			searchButton.centerXAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerXAnchor)
 			
 		])
 	}

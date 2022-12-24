@@ -135,6 +135,7 @@ class NetworkService: APIService {
 					let decodedData = try JSONDecoder().decode(ModelData.self, from: data)
 					completion(.success(decodedData))
 				} catch {
+					print(req)
 					completion(.failure(error))
 				}
 			}
@@ -147,11 +148,11 @@ class NetworkService: APIService {
 		get {
 			if connection?.currentPath.status == .requiresConnection {
 				print ("no connection")
-				return true
+				return false
 				
 			} else {
 				print ("okay")
-				return false
+				return true
 				
 			}
 		}

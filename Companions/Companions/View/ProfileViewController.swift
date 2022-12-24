@@ -15,10 +15,16 @@ protocol ProfileViewControllerProtocol {
 class ProfileViewController: UIViewController {
 	
 	var delegate: ProfileViewControllerProtocol?
+	var viewModel: ProfileViewModelProtocol
 	
-	private lazy var projectInfoData: [ProjectsUsersModel] = []
-	private lazy var arrayWithCellData: [ProjectInfoModel] = []
-	private lazy var cursusData: [CursusModel] = []
+	init(_ viewModel: ProfileViewModel) {
+			self.viewModel = viewModel
+			super.init(nibName: nil, bundle: nil)
+		}
+		
+		required init?(coder: NSCoder) {
+			fatalError("init(coder:) has not been implemented")
+		}
 	
 	let profileImage: UIImageView = {
 		let image = UIImageView(frame: CGRect(x: 0, y: 0, width: 150, height: 150))
@@ -110,8 +116,9 @@ class ProfileViewController: UIViewController {
 	//MARK: - Lifecycle
 	override func viewDidLoad() {
 		super.viewDidLoad()
-		setupView()
 		callToViewModelForUpdate()
+		setupView()
+		
 	}
 	
 	override func viewWillLayoutSubviews() {
@@ -127,7 +134,6 @@ class ProfileViewController: UIViewController {
 		view.backgroundColor = UIColor(patternImage: image)
 		view.addSubviews([profileImage, nickLabel,locationLabel, emailLabel, walletLabel,pointsLabel,currentLvl,currentLvlLabel, tableView])
 		setupConstraints()
-		fetchData()
 		setupTabelView()
 	}
 	
@@ -190,59 +196,26 @@ class ProfileViewController: UIViewController {
 		tableView.separatorStyle = .singleLine
 	}
 	
-	func fetchData() {
-		NetworkService.shared.loadUser(userName:delegate?.userName) { result in
-			switch result {
-			case .success(let data):
-				self.projectInfoData = data.projects_users ?? []
-				self.cursusData = data.cursus_users 
-				//Cringe
-				guard let level = self.cursusData[1].level else { return }
-				let levelProgress = level.truncatingRemainder(dividingBy: 1)
-				let stringLevel = "\(level) %"
-//				let level =  Int((self.cursusData[1].level ?? 0.0) * 100) % 100
-				DispatchQueue.main.async {
-					self.tableView.reloadData()
-					self.emailLabel.text = data.email
-					self.nickLabel.text = data.login
-					self.locationLabel.text = self.helloYandex(email: data.email ?? "Moscow")
-					self.walletLabel.text = "wallet: \(data.wallet ?? 0)₳"
-					self.pointsLabel.text = "evaluation points: \(data.correction_point ?? 0)"
-					self.currentLvl.setProgress(levelProgress, animated: false)
-					self.currentLvlLabel.text = stringLevel
-					//MARK: - Nado ili ne nado ?
-					self.reloadInputViews()
-				}
-			case .failure(let error):
-				print(error)
-			}
-		}
-	}
-	
-	func helloYandex(email: String) -> String {
-		let mail = email
-		let result = String(mail.split(separator: "@")[1])
-		var campusName: String {
-			switch result {
-			case "student.21-school.ru": return "📍Moscow"
-			case "student.42.fr": return "📍Paris"
-			case "student.42tokyo.jp": return "📍Tokyo"
-			default: return "📍Adelaide"
-			}
-		}
-		return campusName
-	}
 	
 	func callToViewModelForUpdate() {
-		
+		viewModel.fetchData()
+//		DispatchQueue.main.async { [self] in
+			self.emailLabel.text = viewModel.email
+			self.nickLabel.text = viewModel.login
+			self.locationLabel.text = viewModel.location
+			self.walletLabel.text = viewModel.wallet
+			self.pointsLabel.text = viewModel.points
+			self.currentLvl.setProgress((self.viewModel.levelProgress), animated: false)
+			self.currentLvlLabel.text = self.viewModel.stringLevel
+			self.tableView.reloadData()
+//		}
 	}
-
 }
 
 extension ProfileViewController: UITableViewDelegate, UITableViewDataSource {
 	
 	func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-		return projectInfoData.count
+		return viewModel.tableViewCount
 	}
 	
 	func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -253,7 +226,7 @@ extension ProfileViewController: UITableViewDelegate, UITableViewDataSource {
 		guard let cell = tableView.dequeueReusableCell(withIdentifier: K.reuseIdentifier) as? Cell
 		else { fatalError() }
 		
-		let data = projectInfoData.sorted {$0.finalMark ?? 0 > $1.finalMark ?? 0}
+		let data = viewModel.projectInfoData
 		let element = data[indexPath.row]
 		cell.configure(model: Cell.Model(name: element.project?.name, mark: String(element.finalMark ?? 0), validated: element.validated))
 		cell.backgroundColor = UIColor.clear
