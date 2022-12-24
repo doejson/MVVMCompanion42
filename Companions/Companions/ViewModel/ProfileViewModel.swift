@@ -28,9 +28,14 @@ protocol ProfileViewModelProtocol {
 }
 
 class ProfileViewModel {
+	
 	var x = Dynamic("")
 	
 	var delegate: ProfileViewControllerProtocol?
+	
+	init() {
+		fetchData()
+	}
 	
 	var projectInfoData: [ProjectsUsersModel] = []
 	private lazy var arrayWithCellData: [ProjectInfoModel] = []
@@ -100,7 +105,6 @@ extension ProfileViewModel: ProfileViewModelProtocol {
 //				guard let level = self.cursusData[1].level else { return }
 //				self.levelProgress = level.truncatingRemainder(dividingBy: 1)
 //				self.stringLevel = "\(level) %"
-				
 			case .failure(let error):
 				print(error)
 			}
