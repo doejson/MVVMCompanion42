@@ -11,6 +11,8 @@ class LoginViewController: UIViewController {
 	
 	private var viewModel: LoginViewModelProtocol = LoginViewModel()
 	
+	var snowFlakes = SnowFlakeManager()
+	
 	let loginTextField: UITextField = {
 		let textField = UITextField()
 		textField.backgroundColor = .systemMint
@@ -65,34 +67,6 @@ class LoginViewController: UIViewController {
 		return title
 	}()
 	
-	lazy var animation: CAEmitterCell = {
-		let flakeEmitterCell = CAEmitterCell()
-		flakeEmitterCell.contents = UIImage(named: "snowFlake")?.cgImage
-		flakeEmitterCell.scale = 0.06
-		flakeEmitterCell.scaleRange = 0.3
-		flakeEmitterCell.emissionRange = .pi
-		flakeEmitterCell.lifetime = 20.0
-		flakeEmitterCell.birthRate = 40
-		flakeEmitterCell.velocity = -30
-		flakeEmitterCell.velocityRange = -20
-		flakeEmitterCell.yAcceleration = 30
-		flakeEmitterCell.xAcceleration = 5
-		flakeEmitterCell.spin = -0.5
-		flakeEmitterCell.spinRange = 1.0
-		return flakeEmitterCell
-	}()
-	
-	lazy var animationLayer: CAEmitterLayer = {
-		let snowEmitterLayer = CAEmitterLayer()
-		snowEmitterLayer.emitterPosition = CGPoint(x: view.bounds.width / 2.0, y: -50)
-		snowEmitterLayer.emitterSize = CGSize(width: view.bounds.width, height: 0)
-		snowEmitterLayer.emitterShape = CAEmitterLayerEmitterShape.line
-		snowEmitterLayer.beginTime = CACurrentMediaTime()
-		snowEmitterLayer.timeOffset = 10
-		snowEmitterLayer.emitterCells = [animation]
-		return snowEmitterLayer
-	}()
-	
 	//MARK: Initializers View Model
 	
 //	init (_ viewModel: LoginViewModel) {
@@ -125,7 +99,7 @@ class LoginViewController: UIViewController {
 	func setupView() {
 		guard let image = UIImage(named: K.background) else { return }
 		view.backgroundColor = UIColor(patternImage: image)
-		view.layer.addSublayer(animationLayer)
+		snowFlakes.injectSnowLayer(into: view)
 		view.addSubviews([labelView, loginButton, noConnectionImage, noConnectionLabel])
 		setupConstraints()
 	}

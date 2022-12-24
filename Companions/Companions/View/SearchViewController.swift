@@ -12,6 +12,8 @@ class SearchViewController: UIViewController, ProfileViewControllerProtocol {
 	var userName: String?
 	private var viewModel: SearchViewModelProtocol = SearchViewModel()
 	
+	var snowFlakes = SnowFlakeManager()
+	
 	let searchTextField: UITextField = {
 		let search = UITextField()
 		search.font = UIFont.systemFont(ofSize: 20, weight: .bold)
@@ -54,6 +56,7 @@ class SearchViewController: UIViewController, ProfileViewControllerProtocol {
 	//MARK: - Methods
 	private func setupView() {
 		view.backgroundColor = UIColor(patternImage: UIImage(named: K.background)!)
+		snowFlakes.injectSnowLayer(into: view)
 		view.addSubview(searchTextField)
 		view.addSubview(searchButton)
 		setupConstraints()
@@ -61,6 +64,7 @@ class SearchViewController: UIViewController, ProfileViewControllerProtocol {
 	
 	@objc func searchButtonPressed() {
 		userName = searchTextField.text?.lowercased()
+		viewModel.delegate = self
 		viewModel.buttonPressed(sender: self)
 	}
 	

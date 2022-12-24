@@ -25,6 +25,7 @@ protocol ProfileViewModelProtocol {
 	var wallet: String { get }
 	var points: String { get }
 	var location: String { get }
+	var userData: ModelData? { get }
 }
 
 class ProfileViewModel {
@@ -33,7 +34,8 @@ class ProfileViewModel {
 	
 	var delegate: ProfileViewControllerProtocol?
 	
-	init() {
+	init(_ delegate: ProfileViewControllerProtocol?) {
+		self.delegate = delegate
 		fetchData()
 	}
 	
@@ -41,7 +43,7 @@ class ProfileViewModel {
 	private lazy var arrayWithCellData: [ProjectInfoModel] = []
 	private lazy var cursusData: [CursusModel] = []
 	
-	private var userData: ModelData?
+	var userData: ModelData?
 	
 	var userName: String {
 		return delegate?.userName ?? ""
@@ -52,17 +54,16 @@ class ProfileViewModel {
 
 extension ProfileViewModel: ProfileViewModelProtocol {
 	
-	
 	var stringLevel: String {
 		return "\(levelProgress) %"
 	}
 	
 	var email: String {
-		userData?.email ?? ""
+		userData?.email ?? "b,"
 	}
 	
 	var login: String {
-		return userData?.login ?? ""
+		return userData?.login ?? "sdfhdfsh"
 	}
 	
 	var wallet: String {
