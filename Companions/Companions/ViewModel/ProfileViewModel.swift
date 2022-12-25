@@ -26,6 +26,7 @@ protocol ProfileViewModelProtocol {
 	var points: String { get }
 	var location: String { get }
 	var userData: ModelData? { get }
+	var onUpdate: (() -> Void)? { get set }
 }
 
 class ProfileViewModel {
@@ -34,14 +35,16 @@ class ProfileViewModel {
 	
 	var delegate: ProfileViewControllerProtocol?
 	
-	init(_ delegate: ProfileViewControllerProtocol?) {
-		self.delegate = delegate
+	init(_ asdfadsf: ProfileViewControllerProtocol?) {
+		self.delegate = asdfadsf
 		fetchData()
 	}
 	
 	var projectInfoData: [ProjectsUsersModel] = []
-	private lazy var arrayWithCellData: [ProjectInfoModel] = []
-	private lazy var cursusData: [CursusModel] = []
+	var arrayWithCellData: [ProjectInfoModel] = []
+	var cursusData: [CursusModel] = []
+	
+	var onUpdate: (() -> Void)?
 	
 	var userData: ModelData?
 	
@@ -55,7 +58,7 @@ class ProfileViewModel {
 extension ProfileViewModel: ProfileViewModelProtocol {
 	
 	var stringLevel: String {
-		return "\(levelProgress) %"
+		return "\(cursusData[safe: 1]?.level ?? 0) %"
 	}
 	
 	var email: String {
@@ -79,10 +82,7 @@ extension ProfileViewModel: ProfileViewModelProtocol {
 	}
 	
 	var levelProgress: Float {
-//		guard let level = self.cursusData[1].level else { return 0.1 }
-		
-		//Mock
-		 let level = 10.1
+		guard let level = self.cursusData[safe: 1]?.level else { return 0.1 }
 
 		return Float(level.truncatingRemainder(dividingBy: 1))
 	}
@@ -92,20 +92,14 @@ extension ProfileViewModel: ProfileViewModelProtocol {
 	}
 	
 	func fetchData() {
-		NetworkService.shared.loadUser(userName: self.userName) { result in
+		NetworkService.shared.loadUser(userName: self.userName) { [weak self] result in
+			guard let self else { return }
 			switch result {
 			case .success(let data):
 				self.userData = data
 				self.projectInfoData = (data.projects_users ?? []).sorted {$0.finalMark ?? 0 > $1.finalMark ?? 0}
 				self.cursusData = data.cursus_users
-//				self.email = data.email ?? ""
-//				self.login = data.login ?? ""
-//				self.wallet = "wallet: \(data.wallet ?? 0)₳"
-//				self.points = "evaluation points: \(data.correction_point ?? 0)"
-//				self.location = self.checkCampus(email: data.email ?? "Moscow")
-//				guard let level = self.cursusData[1].level else { return }
-//				self.levelProgress = level.truncatingRemainder(dividingBy: 1)
-//				self.stringLevel = "\(level) %"
+				self.onUpdate?()
 			case .failure(let error):
 				print(error)
 			}

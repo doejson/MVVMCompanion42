@@ -9,18 +9,20 @@ import Foundation
 import UIKit
 
 class ProfileViewController: UIViewController {
-	
-	
 	var viewModel: ProfileViewModelProtocol
 	
 	init(_ viewModel: ProfileViewModel) {
-			self.viewModel = viewModel
-			super.init(nibName: nil, bundle: nil)
+		self.viewModel = viewModel
+		super.init(nibName: nil, bundle: nil)
+		viewModel.onUpdate = { [weak self] in
+			guard let self else { return }
+			self.updateView()
 		}
-		
-		required init?(coder: NSCoder) {
-			fatalError("init(coder:) has not been implemented")
-		}
+	}
+	
+	required init?(coder: NSCoder) {
+		fatalError("init(coder:) has not been implemented")
+	}
 	
 	let profileImage: UIImageView = {
 		let image = UIImageView(frame: CGRect(x: 0, y: 0, width: 150, height: 150))
@@ -195,16 +197,20 @@ class ProfileViewController: UIViewController {
 	
 	func callToViewModelForUpdate() {
 		viewModel.fetchData()
-//		DispatchQueue.main.async { [self] in
-			self.emailLabel.text = viewModel.email
-			self.nickLabel.text = viewModel.login
-			self.locationLabel.text = viewModel.location
-			self.walletLabel.text = viewModel.wallet
-			self.pointsLabel.text = viewModel.points
+
+	}
+	
+	func updateView() {
+		DispatchQueue.main.async {
+			self.emailLabel.text = self.viewModel.email
+			self.nickLabel.text = self.viewModel.login
+			self.locationLabel.text = self.viewModel.location
+			self.walletLabel.text = self.viewModel.wallet
+			self.pointsLabel.text = self.viewModel.points
 			self.currentLvl.setProgress((self.viewModel.levelProgress), animated: false)
 			self.currentLvlLabel.text = self.viewModel.stringLevel
 			self.tableView.reloadData()
-//		}
+		}
 	}
 }
 

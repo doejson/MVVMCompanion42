@@ -13,6 +13,7 @@
 		32A8721F292A837F00549ED8 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32A8721E292A837F00549ED8 /* SearchViewController.swift */; };
 		32A87221292A8A5100549ED8 /* Cell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32A87220292A8A5100549ED8 /* Cell.swift */; };
 		32A87223292A8A8100549ED8 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32A87222292A8A8100549ED8 /* Extensions.swift */; };
+		32C35E6E2958858500FE63D1 /* Array+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32C35E6D2958858500FE63D1 /* Array+Ext.swift */; };
 		5A1F59A52925433200FF854E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A1F59A42925433200FF854E /* AppDelegate.swift */; };
 		5A1F59A72925433200FF854E /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A1F59A62925433200FF854E /* SceneDelegate.swift */; };
 		5A1F59A92925433200FF854E /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A1F59A82925433200FF854E /* LoginViewController.swift */; };
@@ -39,6 +40,7 @@
 		32A8721E292A837F00549ED8 /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
 		32A87220292A8A5100549ED8 /* Cell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Cell.swift; sourceTree = "<group>"; };
 		32A87222292A8A8100549ED8 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
+		32C35E6D2958858500FE63D1 /* Array+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Array+Ext.swift"; sourceTree = "<group>"; };
 		5A1F59A12925433100FF854E /* Companions.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Companions.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5A1F59A42925433200FF854E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		5A1F59A62925433200FF854E /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -70,6 +72,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		32C35E6C2958856A00FE63D1 /* Utilites */ = {
+			isa = PBXGroup;
+			children = (
+				32C35E6D2958858500FE63D1 /* Array+Ext.swift */,
+			);
+			path = Utilites;
+			sourceTree = "<group>";
+		};
 		5A1F59982925433100FF854E = {
 			isa = PBXGroup;
 			children = (
@@ -90,6 +100,7 @@
 		5A1F59A32925433100FF854E /* Companions */ = {
 			isa = PBXGroup;
 			children = (
+				32C35E6C2958856A00FE63D1 /* Utilites */,
 				3268B91F29449A4500159918 /* Companions.entitlements */,
 				3268B92029449A8000159918 /* KeychainService.swift */,
 				5A8C0BF8292564A700EDF33B /* Network */,
@@ -260,6 +271,7 @@
 				5A8C0BF7292563A800EDF33B /* ProfileViewController.swift in Sources */,
 				325C24F829343EF9006F1EFD /* NetworkServiceProtocol.swift in Sources */,
 				5A5B4B0E2957269400F79874 /* LoginViewControllerTest.swift in Sources */,
+				32C35E6E2958858500FE63D1 /* Array+Ext.swift in Sources */,
 				3268B92129449A8000159918 /* KeychainService.swift in Sources */,
 				325C24FA29343F06006F1EFD /* NetworkModel.swift in Sources */,
 				5A5B4B10295726A900F79874 /* SearchViewControllerTest.swift in Sources */,
