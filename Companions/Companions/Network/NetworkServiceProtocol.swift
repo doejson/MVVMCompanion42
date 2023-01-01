@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import UIKit
 
 protocol APIService {
 	
@@ -22,6 +23,7 @@ protocol APIService {
 	//MARK: - get user data
 	func loadUser(userName: String?, completion: @escaping (Result<ModelData, Error>) -> Void)
 	
+	//MARK: - Download Image
+	func testAsyncLoadUserPhoto(userName: String?, urlUser: URL?) async throws -> UIImage
 
-	
 }
