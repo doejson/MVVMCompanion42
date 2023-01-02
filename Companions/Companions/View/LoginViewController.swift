@@ -6,6 +6,9 @@
 //
 
 import UIKit
+import LocalAuthentication
+import AuthenticationServices
+
 
 class LoginViewController: UIViewController {
 	
@@ -67,19 +70,6 @@ class LoginViewController: UIViewController {
 		return title
 	}()
 	
-	//MARK: Initializers View Model
-	
-//	init (_ viewModel: LoginViewModel) {
-//		self.viewModel = viewModel
-//		super.init(nibName: nil, bundle: nil)
-//	}
-//
-//	required init?(coder: NSCoder) {
-//		fatalError("init(coder:) has not been implemented")
-//	}
-	
-	
-	
 	//MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -120,14 +110,6 @@ class LoginViewController: UIViewController {
 			return
 		}
 		viewModel.fetch()
-		
-//		viewModel.fetch() = { [weak self] in
-//			guard let self = self else { return }
-//			if !Storage.isSaveSearch {
-//				self.showSearchAlert()
-//			}
-//		}
-
 	}
 }
 

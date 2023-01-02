@@ -15,7 +15,7 @@ class ProfileViewController: UIViewController {
 		self.viewModel = viewModel
 		super.init(nibName: nil, bundle: nil)
 		viewModel.onUpdate = { [weak self] in
-			guard let self else { return }
+			guard let self = self else { return }
 			self.updateView()
 		}
 	}
