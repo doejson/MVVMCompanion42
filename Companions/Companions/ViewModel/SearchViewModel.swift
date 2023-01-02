@@ -25,7 +25,7 @@ class SearchViewModel {
 
 extension SearchViewModel: SearchViewModelProtocol {
 
-	@inlinable internal func buttonPressed(sender: UIViewController) {
+	func buttonPressed(sender: UIViewController) {
 		let profileViewModel = ProfileViewModel(delegate)
 		let profileViewController = ProfileViewController(profileViewModel)
 	
@@ -33,7 +33,7 @@ extension SearchViewModel: SearchViewModelProtocol {
 		print("Search Success")
 	}
 	
-	@inlinable internal func showAllert() {
+	func showAllert() {
 		print("Kyky ne rabotaet 🤷‍♂️")
 	}
 	
