@@ -13,17 +13,6 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
 
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
-		
-//		NetworkService.shared.checkToken { result in
-//			switch result {
-//			case .success(let data):
-//				if data.expires_type == "expired" {
-//					self.presentLoginPage()
-//				}
-//			case .failure(let error):
-//				print(error)
-//			}
-//		}
 
         guard let windowScene = (scene as? UIWindowScene) else { return }
         
