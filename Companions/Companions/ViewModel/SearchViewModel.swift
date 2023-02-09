@@ -28,7 +28,7 @@ extension SearchViewModel: SearchViewModelProtocol {
 	func buttonPressed(sender: UIViewController) {
 		let profileViewModel = ProfileViewModel(delegate)
 		let profileViewController = ProfileViewController(profileViewModel)
-	
+		
 		userName == "" || userName == "42" ? showAllert() : sender.navigationController?.pushViewController(profileViewController, animated: true)
 		print("Search Success")
 	}

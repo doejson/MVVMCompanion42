@@ -7,8 +7,12 @@
 
 import Foundation
 
-
+//MARK: UserDefaults
 let userName = UserDefaults.standard.string(forKey: "user")
+
+//MARK: Keychain
+//let keyChainService = KeyChainManager()
+//let userName = keyChainService.getApiKey(for: "user")
 
 struct Web {
 	

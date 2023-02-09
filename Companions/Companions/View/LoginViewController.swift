@@ -15,6 +15,7 @@ class LoginViewController: UIViewController {
 	private var viewModel: LoginViewModelProtocol = LoginViewModel()
 	
 	var snowFlakes = SnowFlakeManager()
+	var keyChainStore: KeyChainStore?
 	
 	let loginTextField: UITextField = {
 		let textField = UITextField()
@@ -101,6 +102,9 @@ class LoginViewController: UIViewController {
 		print("Login Success")
 		print(UserDefaults.standard.value(forKey: "token") ?? "")
 		print(UserDefaults.standard.value(forKey: "tokenType") ?? "")
+	
+//		print(keyChainStore?.getApiKey(for: "access_token"))
+//		print(keyChainStore?.getApiKey(for: "token_type"))
 	}
 	
 	func callToViewModelForUpdate() {

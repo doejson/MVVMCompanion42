@@ -30,6 +30,7 @@
 		5A8C0BFA292564BD00EDF33B /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A8C0BF9292564BD00EDF33B /* NetworkService.swift */; };
 		5A8DACC4292693BD00D56178 /* ProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A8DACC3292693BD00D56178 /* ProfileViewModel.swift */; };
 		5AA6D8FD292D44B100ABC850 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AA6D8FC292D44B100ABC850 /* Constants.swift */; };
+		5AC0A6CF29952D44009F7918 /* KeychainService_vs_Protocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AC0A6CE29952D44009F7918 /* KeychainService_vs_Protocol.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -59,6 +60,7 @@
 		5A8C0BF9292564BD00EDF33B /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; usesTabs = 1; };
 		5A8DACC3292693BD00D56178 /* ProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewModel.swift; sourceTree = "<group>"; };
 		5AA6D8FC292D44B100ABC850 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		5AC0A6CE29952D44009F7918 /* KeychainService_vs_Protocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainService_vs_Protocol.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -103,6 +105,7 @@
 				32C35E6C2958856A00FE63D1 /* Utilites */,
 				3268B91F29449A4500159918 /* Companions.entitlements */,
 				3268B92029449A8000159918 /* KeychainService.swift */,
+				5AC0A6CE29952D44009F7918 /* KeychainService_vs_Protocol.swift */,
 				5A8C0BF8292564A700EDF33B /* Network */,
 				5A8C0BF229255B2C00EDF33B /* Model */,
 				5A8C0BF329255B3600EDF33B /* View */,
@@ -273,6 +276,7 @@
 				5A5B4B0E2957269400F79874 /* LoginViewControllerTest.swift in Sources */,
 				32C35E6E2958858500FE63D1 /* Array+Ext.swift in Sources */,
 				3268B92129449A8000159918 /* KeychainService.swift in Sources */,
+				5AC0A6CF29952D44009F7918 /* KeychainService_vs_Protocol.swift in Sources */,
 				325C24FA29343F06006F1EFD /* NetworkModel.swift in Sources */,
 				5A5B4B10295726A900F79874 /* SearchViewControllerTest.swift in Sources */,
 				5AA6D8FD292D44B100ABC850 /* Constants.swift in Sources */,

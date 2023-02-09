@@ -19,6 +19,7 @@ class NetworkService: APIService {
 	private init() {}
 	
 	var connection: NWPathMonitor?
+	let keyChainStore = KeyChainManager()
 	
 	let api = Web.api
 	let scheme = Web.scheme
@@ -89,8 +90,13 @@ class NetworkService: APIService {
 	
 	func checkToken(completion: @escaping (Result<CheckToken, Error>) -> Void) {
 		
+		//MARK: USER DEFAULTS
 		guard let token = UserDefaults.standard.string(forKey: "token") else { return }
 		guard let tokenType = UserDefaults.standard.string(forKey: "tokenType") else { return }
+		
+		//MARK: KEYCHAIN
+//		guard let token = keyChainStore.getApiKey(for: "access_token") else { return }
+//		guard let tokenType = keyChainStore.getApiKey(for: "token_type") else { return }
 		
 		let urlSession = URLSession(configuration: .default)
 		var req = URLRequest(url: checkToken)
@@ -118,13 +124,20 @@ class NetworkService: APIService {
 	
 	func loadUser(userName: String?, completion: @escaping (Result<ModelData, Error>) -> Void) {
 		
+		//MARK: USERDEFAULTS
 		guard let token = UserDefaults.standard.string(forKey: "token") else { return }
 		guard let tokenType = UserDefaults.standard.string(forKey: "tokenType") else { return }
+		
+		//MARK: KEYCHAIN
+//		guard let token = keyChainStore.getApiKey(for: "access_token") else { return }
+//		guard let tokenType = keyChainStore.getApiKey(for: "token_type") else { return }
+		
 		let urlSession = URLSession(configuration: .default)
 		let urlUser = urlUser.appendingPathComponent(userName ?? "")
 		var req = URLRequest(url: urlUser)
 		req.httpMethod = "GET"
 		req.addValue(tokenType + " " + token, forHTTPHeaderField: "Authorization")
+		print(req)
 
 		let task = urlSession.dataTask(with: req) { (data,response,error) in
 			if let error = error {
