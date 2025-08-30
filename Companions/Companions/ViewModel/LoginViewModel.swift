@@ -4,25 +4,27 @@
 //
 //  Created by Tiana Patti on 11/16/22.
 //
-
-import Foundation
 import UIKit
 import Network
 
 protocol LoginViewModelProtocol {
-	func checkConnection()
+
+//	var isUserAlreadyLogIn: Bool { get set }
+	var checkConnection: Bool { get }
+	var onUpdate: (() -> Void)? { get set }
 	func checktoken()
 	func fetch()
-	
 }
 
-class LoginViewModel: LoginViewModelProtocol {
+final class LoginViewModel: LoginViewModelProtocol {
+	
+	var onUpdate: (() -> Void)?
+	
 	var token: String?
 	var tokenType: String?
 	var tokenStatus: String?
 	
 	func checktoken() {
-		checkConnection()
 		NetworkService.shared.checkToken { result in
 			switch result {
 			case .success(let data):
@@ -36,7 +38,6 @@ class LoginViewModel: LoginViewModelProtocol {
 	}
 	
 	func fetch() {
-		checkConnection()
 		checktoken()
 		if tokenStatus == "weak" || tokenStatus == "expired" || tokenStatus == nil {
 			NetworkService.shared.getToken { result in
@@ -45,6 +46,7 @@ class LoginViewModel: LoginViewModelProtocol {
 					UserDefaults.standard.setValue(data.access_token, forKey: "token")
 					UserDefaults.standard.setValue(data.token_type, forKey: "tokenType")
 					UserDefaults.standard.synchronize()
+					self.onUpdate?()
 				case .failure(let error):
 					print(error)
 				}
@@ -52,15 +54,6 @@ class LoginViewModel: LoginViewModelProtocol {
 		}
 	}
 	
-	func checkConnection() {
-		let vc = NoNetworkVC()
-		if NetworkService.shared.isNetworkAvailable == true {
-			print("connection ok")
-		} else {
-			print("no connection")
-		}
-	}
-	
-	
+	var checkConnection: Bool = NetworkService.shared.isNetworkAvailable
 
 }

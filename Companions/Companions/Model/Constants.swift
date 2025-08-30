@@ -9,7 +9,6 @@ import Foundation
 
 //MARK: - Constants
 struct K {
-	
 	static let appName = "Companions42"
 	static let error = "Error"
 	static let loginButtonTitle = "Log In 💖"

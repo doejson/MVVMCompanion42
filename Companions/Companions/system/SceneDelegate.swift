@@ -7,30 +7,15 @@
 
 import UIKit
 
-class SceneDelegate: UIResponder, UIWindowSceneDelegate {
+final class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
     var window: UIWindow?
 
-
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
-		
-//		NetworkService.shared.checkToken { result in
-//			switch result {
-//			case .success(let data):
-//				if data.expires_type == "expired" {
-//					self.presentLoginPage()
-//				}
-//			case .failure(let error):
-//				print(error)
-//			}
-//		}
-
         guard let windowScene = (scene as? UIWindowScene) else { return }
-        
         window = UIWindow(frame: windowScene.coordinateSpace.bounds)
         window?.windowScene = windowScene
-        
-        let navigationController = UINavigationController(rootViewController: LoginViewController())
+		let navigationController = UINavigationController(rootViewController: LoginViewController(LoginViewModel()))
         window?.rootViewController = navigationController
         window?.makeKeyAndVisible()
     }

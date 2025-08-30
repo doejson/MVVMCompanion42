@@ -13,7 +13,7 @@ enum NetworkError: Error {
 	case invalidURL, noData, noToken, decodingError
 }
 
-class NetworkService: APIService {
+final class NetworkService: APIService {
 
 	static let shared: APIService = NetworkService()
 	private init() {}
@@ -41,7 +41,7 @@ class NetworkService: APIService {
 		return finalURl
 	}()
 	
-	var checkToken: URL = {
+	private var checkToken: URL = {
 		var url = URLComponents()
 		url.scheme = Web.scheme
 		url.host = Web.api
@@ -50,7 +50,7 @@ class NetworkService: APIService {
 		return finalURl
 	}()
 	
-	var urlUser: URL = {
+	private var urlUser: URL = {
 		var url = URLComponents()
 		url.scheme = Web.scheme
 		url.host = Web.api
@@ -135,6 +135,7 @@ class NetworkService: APIService {
 					let decodedData = try JSONDecoder().decode(ModelData.self, from: data)
 					completion(.success(decodedData))
 				} catch {
+					print(req)
 					completion(.failure(error))
 				}
 			}
@@ -147,13 +148,32 @@ class NetworkService: APIService {
 		get {
 			if connection?.currentPath.status == .requiresConnection {
 				print ("no connection")
-				return true
+				return false
 				
 			} else {
 				print ("okay")
-				return false
+				return true
 				
 			}
 		}
+	}
+	
+	func testAsyncLoadUserPhoto(userName: String?, urlUser: URL?) async throws -> UIImage {
+		
+		guard let url = urlUser?.appendingPathComponent(userName ?? "") else {
+			return UIImage()
+		}
+		
+		let (data,response) = try await URLSession.shared.data(from: url)
+		
+		guard let httpResponse = response as? HTTPURLResponse,
+			  httpResponse.statusCode == 200 else {
+			throw NetworkError.invalidURL
+		}
+		
+		guard let image = UIImage(data: data) else {
+			throw NetworkError.noData
+		}
+		return image
 	}
 }

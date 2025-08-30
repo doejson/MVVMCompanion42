@@ -16,9 +16,9 @@ struct Web {
 	static let api = "api.intra.42.fr"
 	static let path = "/oauth/token/"
 	static let userPath = "/v2/users/"
+	//MARK: - KEYS
 	static let secret = ProcessInfo.processInfo.environment["secret"]
 	static let uid = ProcessInfo.processInfo.environment["uid"]
-	
 }
 
 struct Token: Codable {
