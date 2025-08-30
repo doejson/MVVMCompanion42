@@ -8,13 +8,12 @@ import UIKit
 import Network
 
 protocol LoginViewModelProtocol {
+
 //	var isUserAlreadyLogIn: Bool { get set }
 	var checkConnection: Bool { get }
 	var onUpdate: (() -> Void)? { get set }
 	func checktoken()
 	func fetch()
-	
-	
 }
 
 final class LoginViewModel: LoginViewModelProtocol {
