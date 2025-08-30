@@ -9,14 +9,17 @@ import Network
 
 protocol LoginViewModelProtocol {
 //	var isUserAlreadyLogIn: Bool { get set }
-	var checkConnection: Bool { get set }
+	var checkConnection: Bool { get }
+	var onUpdate: (() -> Void)? { get set }
 	func checktoken()
 	func fetch()
+	
 	
 }
 
 final class LoginViewModel: LoginViewModelProtocol {
-
+	
+	var onUpdate: (() -> Void)?
 	
 	var token: String?
 	var tokenType: String?
@@ -44,6 +47,7 @@ final class LoginViewModel: LoginViewModelProtocol {
 					UserDefaults.standard.setValue(data.access_token, forKey: "token")
 					UserDefaults.standard.setValue(data.token_type, forKey: "tokenType")
 					UserDefaults.standard.synchronize()
+					self.onUpdate?()
 				case .failure(let error):
 					print(error)
 				}
@@ -51,13 +55,6 @@ final class LoginViewModel: LoginViewModelProtocol {
 		}
 	}
 	
-	var checkConnection: Bool {
-		get {
-			NetworkService.shared.isNetworkAvailable == true ? true : false
-		}
-		set {
-			print("Hi I'm View Model")
-		}
-	}
+	var checkConnection: Bool = NetworkService.shared.isNetworkAvailable
 
 }

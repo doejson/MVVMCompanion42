@@ -8,7 +8,8 @@
 import Foundation
 import UIKit
 
-class ProfileViewController: UIViewController {
+final class ProfileViewController: UIViewController {
+	
 	var viewModel: ProfileViewModelProtocol
 	
 	init(_ viewModel: ProfileViewModel) {
@@ -24,7 +25,7 @@ class ProfileViewController: UIViewController {
 		fatalError("init(coder:) has not been implemented")
 	}
 	
-	let profileImage: UIImageView = {
+	private let profileImage: UIImageView = {
 		let image = UIImageView(frame: CGRect(x: 0, y: 0, width: 150, height: 150))
 		image.layer.cornerRadius = image.frame.size.height / 2
 		image.layer.borderWidth = 1.0
@@ -36,7 +37,7 @@ class ProfileViewController: UIViewController {
 		return image
 	}()
 	
-	let nickLabel: UILabel = {
+	private let nickLabel: UILabel = {
 		let label = UILabel()
 		label.text = K.userError
 		label.adjustsFontSizeToFitWidth = true
@@ -48,7 +49,7 @@ class ProfileViewController: UIViewController {
 		
 	}()
 	
-	let locationLabel: UILabel = {
+	private let locationLabel: UILabel = {
 		let label = UILabel()
 		label.adjustsFontSizeToFitWidth = true
 		label.tintColor = .white
@@ -60,7 +61,7 @@ class ProfileViewController: UIViewController {
 		
 	}()
 	
-	let emailLabel: UILabel = {
+	private let emailLabel: UILabel = {
 		let label = UILabel()
 		label.tintColor = .white
 		label.textColor = .white
@@ -71,7 +72,7 @@ class ProfileViewController: UIViewController {
 		
 	}()
 	
-	let walletLabel: UILabel = {
+	private let walletLabel: UILabel = {
 		let label = UILabel()
 		label.tintColor = .white
 		label.textColor = .white
@@ -80,7 +81,7 @@ class ProfileViewController: UIViewController {
 		return label
 	}()
 	
-	let pointsLabel: UILabel = {
+	private let pointsLabel: UILabel = {
 		let label = UILabel()
 		label.tintColor = .white
 		label.textColor = .white
@@ -89,7 +90,7 @@ class ProfileViewController: UIViewController {
 		return label
 	}()
 	
-	let currentLvlLabel: UILabel = {
+	private let currentLvlLabel: UILabel = {
 		let label = UILabel()
 		label.textColor = .black
 		label.tintColor = .cyan
@@ -98,7 +99,7 @@ class ProfileViewController: UIViewController {
 		return label
 	}()
 	
-	let currentLvl: UIProgressView = {
+	private let currentLvl: UIProgressView = {
 		let currentLvl = UIProgressView()
 		currentLvl.clipsToBounds = true
 		currentLvl.layer.borderWidth = 1
@@ -116,7 +117,6 @@ class ProfileViewController: UIViewController {
 		super.viewDidLoad()
 		callToViewModelForUpdate()
 		setupView()
-		
 	}
 	
 	override func viewWillLayoutSubviews() {
@@ -127,7 +127,7 @@ class ProfileViewController: UIViewController {
 		currentLvl.layer.cornerRadius = 12.4
 	}
 	
-	func setupView() {
+	private func setupView() {
 		guard let image = UIImage(named: K.background) else { return }
 		view.backgroundColor = UIColor(patternImage: image)
 		view.addSubviews([profileImage, nickLabel,locationLabel, emailLabel, walletLabel,pointsLabel,currentLvl,currentLvlLabel, tableView])
@@ -180,7 +180,6 @@ class ProfileViewController: UIViewController {
 			tableView.leftAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leftAnchor, constant: 5),
 			tableView.rightAnchor.constraint(equalTo: view.safeAreaLayoutGuide.rightAnchor),
 			tableView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor)
-			
 		])
 	}
 	
@@ -194,10 +193,8 @@ class ProfileViewController: UIViewController {
 		tableView.separatorStyle = .singleLine
 	}
 	
-	
 	func callToViewModelForUpdate() {
 		viewModel.fetchData()
-
 	}
 	
 	func updateView() {
@@ -237,12 +234,4 @@ extension ProfileViewController: UITableViewDelegate, UITableViewDataSource {
 		cell.selectionStyle = .none
 		return cell
 	}
-	
 }
-
-/* TODO: Отрисовка слоя с фоткой без тормозов ?!
-						Скругление индикатора прогресс бара ?!
- 
-						Разница между ?? и guard
-				
- */

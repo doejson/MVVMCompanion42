@@ -29,7 +29,7 @@ protocol ProfileViewModelProtocol {
 	var onUpdate: (() -> Void)? { get set }
 }
 
-class ProfileViewModel {
+final class ProfileViewModel {
 	
 	var x = Dynamic("")
 	
@@ -51,8 +51,6 @@ class ProfileViewModel {
 	var userName: String {
 		return delegate?.userName ?? ""
 	}
-	
-	
 }
 
 extension ProfileViewModel: ProfileViewModelProtocol {

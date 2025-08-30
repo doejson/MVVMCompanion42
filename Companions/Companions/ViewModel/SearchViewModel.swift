@@ -16,7 +16,7 @@ protocol SearchViewModelProtocol {
 	
 }
 
-class SearchViewModel {
+final class SearchViewModel {
 	var delegate: ProfileViewControllerProtocol?
 
 	var hello = Dynamic("")

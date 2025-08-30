@@ -16,9 +16,12 @@ struct Web {
 	static let api = "api.intra.42.fr"
 	static let path = "/oauth/token/"
 	static let userPath = "/v2/users/"
-	static let secret = ProcessInfo.processInfo.environment["secret"]
-	static let uid = ProcessInfo.processInfo.environment["uid"]
-	
+	//MARK: - Simulator
+//	static let secret = ProcessInfo.processInfo.environment["secret"]
+//	static let uid = ProcessInfo.processInfo.environment["uid"]
+	//MARK: - Device
+	static let secret = "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"
+	static let uid = "u-s4t2ud-7718463f512d5208d700b98bf4f03403d3e208a997bc51a7f286d73ec3f764ab"
 }
 
 struct Token: Codable {

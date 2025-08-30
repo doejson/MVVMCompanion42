@@ -13,7 +13,7 @@ enum NetworkError: Error {
 	case invalidURL, noData, noToken, decodingError
 }
 
-class NetworkService: APIService {
+final class NetworkService: APIService {
 
 	static let shared: APIService = NetworkService()
 	private init() {}
@@ -41,7 +41,7 @@ class NetworkService: APIService {
 		return finalURl
 	}()
 	
-	var checkToken: URL = {
+	private var checkToken: URL = {
 		var url = URLComponents()
 		url.scheme = Web.scheme
 		url.host = Web.api
@@ -50,7 +50,7 @@ class NetworkService: APIService {
 		return finalURl
 	}()
 	
-	var urlUser: URL = {
+	private var urlUser: URL = {
 		var url = URLComponents()
 		url.scheme = Web.scheme
 		url.host = Web.api

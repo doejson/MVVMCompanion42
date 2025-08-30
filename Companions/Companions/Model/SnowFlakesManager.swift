@@ -39,14 +39,13 @@ internal struct SnowFlakeManager {
 		snowLayer.timeOffset = CFTimeInterval(arc4random_uniform(6) + 5)
 		snowLayer.emitterCells = [snowCell]
 
-		view.layer.addSublayer(snowLayer)
+		view.layer.insertSublayer(snowLayer, at: 0)
 	}
 
 	/// Removes snow flake animation
 	func removeFlake() {
 		snowLayer.removeFromSuperlayer()
 	}
-
 }
 
 

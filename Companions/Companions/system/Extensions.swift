@@ -55,10 +55,8 @@ extension UIImageView {
 		}
 		return
 	  }
-	  
 	  guard let data = data else { return }
 	  guard let downloadedImage = UIImage(data: data) else { return }
-	  
 	  imageCache.setObject(downloadedImage, forKey: NSString(string: imageServerUrl))
 	  DispatchQueue.main.async { [weak self] in
 		guard let self = self else { return }
@@ -74,7 +72,6 @@ extension UIImageView {
 	activityIndicator.frame = CGRect(x: 0, y: 0, width: frame.width, height: frame.height)
 	activityIndicator.center = CGPoint(x: bounds.size.width / 2, y: bounds.size.height / 2)
 	activityIndicator.autoresizingMask = AutoresizingMask(rawValue: AutoresizingMask.RawValue(UInt8(AutoresizingMask.flexibleRightMargin.rawValue) | UInt8(AutoresizingMask.flexibleLeftMargin.rawValue) | UInt8(AutoresizingMask.flexibleBottomMargin.rawValue) | UInt8(AutoresizingMask.flexibleTopMargin.rawValue)))
-	
 	return activityIndicator
   }
 }
